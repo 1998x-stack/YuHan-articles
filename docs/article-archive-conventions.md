@@ -28,3 +28,13 @@ articles/02-制度与治理/纪检监察/论执纪之难/
 `pip install python-docx reportlab` 并安装中文 TrueType 字体，例如 Ubuntu 的 `fonts-arphic-gbsn00lp`，然后运行 `python scripts/build_articles.py`。
 
 GitHub Actions 会在正文、生成脚本或工作流变化后生成 DOCX/PDF 并提交。发布后检查 GitHub 的文件列表，确保同名的 `.md/.docx/.pdf` 均存在。二进制文件为自动生成件，排版改动应修改生成脚本。
+
+## 五、预设子目与检索
+
+八大部类下的预留子目须创建有实际用途的 `README.md`：写明收录范围、返回导航与当前状态，不使用空文件或虚构篇名作占位。新增子目须维护该部类的 README、`articles/README.md`、`articles/STRUCTURE.md`。单篇只归档于一个最相关子目；其它目录引用其 canonical 路径即可。
+
+## 六、参考资料与版本
+
+Markdown 正文可采用 `[^1]` 方式标识来源，并在文末以 `[^1]:` 逐条给出可访问链接。出版脚本应将标号转换为易读的脚注标记，并将来源收于末尾；不可把 Markdown 标记本身误排为正文。
+
+原始附件与仓库通过 Markdown 重新生成的 Word/PDF 可能排版不完全一致；正文和参考资料以 Markdown 为准。大型修订可另建版本目录或在 Git 历史中保留，不应误称二进制出版物为原附件的逐字节副本。

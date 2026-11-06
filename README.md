@@ -17,13 +17,15 @@
 
 ## 文章库
 
-按八大主题长期收录，以“主题／子目／单篇”层级组织，一篇文章同时提供 Markdown、Word 和 PDF：
+按八大主题、二级子目长期收录，以“主题／子目／单篇”层级组织，一篇文章同时提供 Markdown、Word 和 PDF：
 
 - [文章分类与导航](articles/README.md)
 - [作品总目录](articles/CATALOG.md)
 - [主题分类体系（24 子目）](articles/TAXONOMY.md)
 - [《河伯娶妇辨》](articles/01-史论与人物/史事辨/河伯娶妇辨/README.md)（史论与人物／史事辨）
 - [《论执纪之难》](articles/02-制度与治理/纪检监察/论执纪之难/README.md)（制度与治理／纪检监察）
+- [《原寺观财弊论》](articles/04-宗教与风俗/宗教治理/原寺观财弊论/README.md)（宗教与风俗／宗教治理）
+- [文章分类设计与收录流程](articles/STRUCTURE.md)
 - [归档标准与出版流程](docs/article-archive-conventions.md)
 
 Markdown 是唯一正文源；Word、PDF 由 `scripts/build_articles.py` 自动生成，不应直接分头编辑。
@@ -63,9 +65,11 @@ Pi 支持项目中的 .pi/skills/ 目录及显式 Skill 命令。若修改 Skill
 .
 ├── articles/                               # 八大主题文章库
 │   ├── CATALOG.md                          # 作品索引
+│   ├── STRUCTURE.md                        # 分类体系、子目占位与收录规范
 │   ├── TAXONOMY.md                         # 主题、子目与归档规则
 │   ├── 01-史论与人物/ ... 08-杂说与辨析/
 │   ├── 02-制度与治理/纪检监察/论执纪之难/  # 三格式作品
+│   ├── 04-宗教与风俗/宗教治理/原寺观财弊论/ # 三格式作品
 │   └── _templates/                         # 单篇目录模板
 ├── AGENTS.md
 ├── README.md

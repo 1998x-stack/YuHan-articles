@@ -27,10 +27,26 @@ CJK_FONTS = [
 ]
 
 def manuscript(text: str):
+    """Read a Markdown essay, preserving its endnotes in printable form."""
     lines = text.replace('\r\n', '\n').strip().splitlines()
     title = next((line[2:].strip() for line in lines if line.startswith('# ')), '未题')
-    sections = re.split(r'\n\s*\n', '\n'.join(line for line in lines if not line.startswith('# ')).strip())
-    return title, [re.sub(r'\s*\n\s*', '', s).strip() for s in sections if s.strip()]
+    raw = '\n'.join(line for line in lines if not line.startswith('# ')).strip()
+    parts = re.split(r'\n\s*---\s*\n', raw, maxsplit=1)
+    body = parts[0].strip()
+    sections = re.split(r'\n\s*\n', body)
+    paragraphs = [
+        re.sub(r'\[\^(\d+)\]', r'〔\1〕', re.sub(r'\s*\n\s*', '', s)).strip()
+        for s in sections if s.strip()
+    ]
+    if len(parts) > 1:
+        notes = re.findall(r'^\[\^(\d+)\]:\s*(.+)$', parts[1], flags=re.M)
+        if notes:
+            paragraphs.append('**史料与法规依据**')
+            for number, note in notes:
+                note = re.sub(r'\[([^\]]+)\]\((https?://[^)]+)\)',
+                              r'\1：\2', note)
+                paragraphs.append(f'〔{number}〕{note}')
+    return title, paragraphs
 
 def add_runs(paragraph, value):
     for piece in re.split(r'(\*\*.*?\*\*)', value):
