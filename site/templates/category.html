@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="content" class="container archive-page">
+  <nav class="breadcrumbs" aria-label="当前位置"><a href="{{ url_for('') }}">首页</a><span aria-hidden="true">/</span><a href="{{ url_for('articles/') }}">文章目录</a><span aria-hidden="true">/</span><span aria-current="page">{{ category.label }}</span></nav>
+  <header class="page-intro"><span class="section-kicker">专题 · {{ category.number }}</span><h1>{{ category.label }}</h1><p>{{ category.description }}</p></header>
+  <div class="category-overview"><div><strong>{{ category.count }}</strong><span>已刊文章</span></div><div><strong>专题存档</strong><span>遵循一文一档原则</span></div><a class="text-link" href="{{ url_for('articles/') }}">返回全部目录 <span aria-hidden="true">→</span></a></div>
+  <div class="section-heading section-heading--compact"><div><h2>本类文章</h2></div></div>
+  <div class="archive-list">
+    {% for article in category_articles %}
+    <article class="archive-item">
+      <div class="archive-item__date">{{ article.date }}</div>
+      <div class="archive-item__main"><div class="archive-item__path">{{ article.subcategory }} · {{ article.reading_minutes }} 分钟阅读</div><h2><a href="{{ article.url }}">{{ article.title }}</a></h2><p>{{ article.excerpt }}</p><div class="archive-item__tags">{% for topic in article.topics[:4] %}<span>{{ topic }}</span>{% endfor %}</div></div>
+      <a class="archive-item__go" href="{{ article.url }}" aria-label="阅读{{ article.title }}">阅读 <span aria-hidden="true">↗</span></a>
+    </article>
+    {% else %}<div class="empty-state"><h3>此专题尚无正式文章</h3><p>目录已建立，后续完成核验和编辑的文章将自动加入。</p><a href="{{ url_for('articles/') }}">浏览其他专题</a></div>{% endfor %}
+  </div>
+</main>
+{% endblock %}

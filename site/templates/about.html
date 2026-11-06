@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="content" class="container about-page">
+  <nav class="breadcrumbs" aria-label="当前位置"><a href="{{ url_for('') }}">首页</a><span aria-hidden="true">/</span><span aria-current="page">关于文集</span></nav>
+  <header class="page-intro"><span class="section-kicker">宗旨 · About</span><h1>有据而论，有理而文</h1><p>本项目收录以韩愈古文论辩方法重构的现代文章，目的在于让文章之气与论证之密相互成就。</p></header>
+  <div class="about-layout">
+    <section class="about-paper prose">
+      <h2>一、立论</h2><p>不徒以古词替白话，不以奇辞取胜。先明本文所争何事，再看流俗之说依凭何理，何处与事实相牴牾。</p>
+      <h2>二、核事</h2><p>保存关键事实、史料、日期、人物、数字与原作者论旨。事实、推测、假设和价值判断不可互相偷换；文风并不能为未经核验的主张背书。</p>
+      <h2>三、设难</h2><p>先为异说立其最强之论，再以条件、对照、名实和后果检验之。反诘须推进道理，不能只制造声势。</p>
+      <h2>四、成文</h2><p>散行为主，骈偶为辅，长短错综，虚词各有其职。篇末应回扣篇首所立之疑，使结论不超过材料可证明的界限。</p>
+      <h2>五、来源与版本</h2><p>网页内容从仓库中的 Markdown 构建，PDF、Word 亦由同一原稿生成。若需核实引用、查看修订或提出勘误，请以公开仓库的源文件与版本历史为准。</p>
+      <p><a href="https://github.com/{{ repo }}/blob/main/prompts/han-yu-master-prompt.md" target="_blank" rel="noopener noreferrer">阅读完整写作 Prompt ↗</a></p>
+    </section>
+    <aside class="about-aside"><div class="about-aside__seal">辨</div><h2>七维审校</h2><ol><li>义明</li><li>理密</li><li>辨深</li><li>辞健</li><li>法活</li><li>气贯</li><li>意远</li></ol><p>此为写作与人工审稿标准，并不意味着所有材料都已得到独立事实核查。</p></aside>
+  </div>
+</main>
+{% endblock %}

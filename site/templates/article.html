@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container reading-layout">
+  <aside class="reading-rail" aria-label="文章分类导航">
+    <a class="rail-back" href="{{ url_for('articles/') }}"><span aria-hidden="true">←</span> 全部文章</a>
+    <div class="rail-label">专题分类</div>
+    <nav class="rail-categories">
+      {% for category in categories %}
+      <a class="{{ 'is-current' if category.slug == article.category_slug else '' }}" href="{{ category.url }}" {% if category.slug == article.category_slug %}aria-current="true"{% endif %}><span>{{ category.number }}</span>{{ category.label }}</a>
+      {% endfor %}
+    </nav>
+    <div class="rail-note">本文经 Markdown 转为 HTML 排印；史料及注释保留于正文。</div>
+  </aside>
+  <main id="content" class="reading-main">
+    <nav class="breadcrumbs" aria-label="当前位置"><a href="{{ url_for('') }}">首页</a><span aria-hidden="true">/</span><a href="{{ category_url(article.category) }}">{{ article.category_label }}</a><span aria-hidden="true">/</span><span aria-current="page">{{ article.title }}</span></nav>
+    <article class="article">
+      <header class="article__header">
+        <div class="article__eyebrow"><span>{{ article.category_label }}</span><span class="dot" aria-hidden="true">·</span><span>{{ article.subcategory }}</span></div>
+        <h1>{{ article.title }}</h1>
+        <p class="article__summary">{{ article.excerpt }}</p>
+        <div class="article__meta"><time datetime="{{ article.date }}">{{ article.date }}</time><span>约 {{ article.reading_minutes }} 分钟阅读</span><span>文言论说</span></div>
+        <div class="article__tools">
+          {% if article.docx_url %}<a class="file-link" href="{{ article.docx_url }}" download>Word 文档 <span aria-hidden="true">↓</span></a>{% endif %}
+          {% if article.pdf_url %}<a class="file-link" href="{{ article.pdf_url }}" target="_blank" rel="noopener">PDF 排印 <span aria-hidden="true">↗</span></a>{% endif %}
+          <a class="file-link file-link--quiet" href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">查看 Markdown 源稿 <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+      <div class="article__divider" aria-hidden="true"><span>◆</span></div>
+      <div class="prose" id="article-body">{{ article.html | safe }}</div>
+      <div class="article__end" aria-hidden="true">终</div>
+      <section class="article__after" aria-labelledby="afterword-title"><h2 id="afterword-title">篇后</h2><p>文中事实、数字与引用以原文所载资料为据；如需考察修改历程，可查阅 GitHub 上的 Markdown 原稿和提交历史。</p><div class="article__tags">{% for topic in article.topics %}<span>{{ topic }}</span>{% endfor %}</div></section>
+    </article>
+    <nav class="article-pagination" aria-label="前后文章">
+      {% if prev_article %}<a href="{{ prev_article.url }}"><span>上一篇</span><strong>{{ prev_article.title }}</strong></a>{% else %}<span class="article-pagination__empty"></span>{% endif %}
+      {% if next_article %}<a href="{{ next_article.url }}"><span>下一篇</span><strong>{{ next_article.title }}</strong></a>{% endif %}
+    </nav>
+  </main>
+  <aside class="reading-toc" aria-label="正文目录">
+    <div class="toc-sticky">
+      <div class="rail-label">此篇目录</div>
+      {% if article.toc %}<nav class="toc-links">{{ article.toc | safe }}</nav>{% else %}<p class="toc-empty">本文以连贯散体论说为主，无分章标题。</p>{% endif %}
+      <div class="toc-progress"><span class="toc-progress__bar" id="reading-progress"></span></div>
+      <a class="toc-back" href="#content">返回篇首 ↑</a>
+    </div>
+  </aside>
+</div>
+{% endblock %}

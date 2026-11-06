@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="content" class="container not-found">
+  <div class="not-found__mark" aria-hidden="true">404</div>
+  <span class="section-kicker">未得其篇</span>
+  <h1>此处尚无文章</h1>
+  <p>页面可能已迁移，或链接有误。请返回文章总目查找。</p>
+  <a class="button button--primary" href="{{ url_for('articles/') }}">返回文章目录 →</a>
+</main>
+{% endblock %}

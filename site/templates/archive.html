@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="content" class="container archive-page">
+  <nav class="breadcrumbs" aria-label="当前位置"><a href="{{ url_for('') }}">首页</a><span aria-hidden="true">/</span><span aria-current="page">文章目录</span></nav>
+  <header class="page-intro"><span class="section-kicker">总目 · Library</span><h1>文章目录</h1><p>按主题分类，按标题检索。所有网页正文均从仓库 Markdown 构建；未完成或仅占位的稿件不会冒充已发表文章。</p></header>
+  <div class="archive-tools">
+    <div class="archive-search"><label for="archive-search">检索篇名、摘要与关键词</label><div class="archive-search__field"><span aria-hidden="true">⌕</span><input id="archive-search" type="search" autocomplete="off" placeholder="例如：养老、公义、治水……"></div></div>
+    <div class="archive-tools__note"><strong>{{ articles|length }}</strong> 篇已收录文章 <span aria-hidden="true">·</span> {{ categories|length }} 个主题</div>
+  </div>
+  <div class="filter-row" id="category-filters" aria-label="按主题筛选">
+    <button type="button" class="filter-pill is-active" data-filter="all" aria-pressed="true">全部 <span>{{ articles|length }}</span></button>
+    {% for category in categories %}
+    <button type="button" class="filter-pill" data-filter="{{ category.slug }}" aria-pressed="false">{{ category.label }} <span>{{ category.count }}</span></button>
+    {% endfor %}
+  </div>
+  <p class="results-label" id="results-count" role="status" aria-live="polite">共 {{ articles|length }} 篇文章</p>
+  <div class="archive-list" id="archive-results">
+    {% for article in articles %}
+    <article class="archive-item" data-category="{{ article.category_slug }}" data-search="{{ article.search_text }}">
+      <div class="archive-item__date">{{ article.date }}</div>
+      <div class="archive-item__main"><div class="archive-item__path">{{ article.category_label }} <span aria-hidden="true">/</span> {{ article.subcategory }}</div><h2><a href="{{ article.url }}">{{ article.title }}</a></h2><p>{{ article.excerpt }}</p><div class="archive-item__tags">{% for topic in article.topics[:4] %}<span>{{ topic }}</span>{% endfor %}</div></div>
+      <a class="archive-item__go" href="{{ article.url }}" aria-label="阅读{{ article.title }}">阅读 <span aria-hidden="true">↗</span></a>
+    </article>
+    {% else %}<p class="empty-state">目前尚无已发表文章。</p>{% endfor %}
+  </div>
+  <div id="no-results" class="no-results" hidden><strong>未找到符合条件的文章</strong><p>可尝试缩短关键词，或切换至全部分类。</p></div>
+  <noscript><p class="noscript">本页已完整列出所有文章；启用 JavaScript 后可使用筛选与搜索。</p></noscript>
+</main>
+{% endblock %}

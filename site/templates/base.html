@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f8f5ef">
+  <meta name="description" content="{{ page.description }}">
+  <meta property="og:type" content="{{ 'article' if page.kind == 'article' else 'website' }}">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="韩愈文集 · 古文论辩">
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:url" content="{{ page.canonical }}">
+  <link rel="canonical" href="{{ page.canonical }}">
+  <link rel="alternate" type="application/rss+xml" title="韩愈文集 RSS" href="{{ url_for('feed.xml') }}">
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('assets/favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('assets/style.css') }}">
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("yuhan-theme");if(t==="dark"||t==="light"){document.documentElement.dataset.theme=t}}catch(e){}</script>
+  <script defer src="{{ url_for('assets/site.js') }}"></script>
+  <title>{{ page.title }} · 韩愈文集</title>
+</head>
+<body data-view="{{ page.kind }}">
+  <a class="skip-link" href="#content">跳转至正文</a>
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="brand" href="{{ url_for('') }}" aria-label="韩愈文集，返回首页">
+        <span class="brand__seal" aria-hidden="true">韩</span>
+        <span class="brand__copy"><strong>韩愈文集</strong><small>以文载道 · 以理成篇</small></span>
+      </a>
+      <nav class="top-nav" aria-label="主导航">
+        <a class="{{ 'is-current' if page.kind == 'home' else '' }}" href="{{ url_for('') }}" {% if page.kind == 'home' %}aria-current="page"{% endif %}>首页</a>
+        <a class="{{ 'is-current' if page.kind in ('archive','category') else '' }}" href="{{ url_for('articles/') }}" {% if page.kind in ('archive','category') %}aria-current="page"{% endif %}>文章目录</a>
+        <a class="{{ 'is-current' if page.kind == 'about' else '' }}" href="{{ url_for('about/') }}" {% if page.kind == 'about' %}aria-current="page"{% endif %}>关于文集</a>
+      </nav>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题"><span aria-hidden="true">◐</span><span class="sr-only">切换明暗主题</span></button>
+    </div>
+  </header>
+  {% block content %}{% endblock %}
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div>
+        <div class="footer-brand">韩愈文集 <span aria-hidden="true">·</span> YuHan Articles</div>
+        <p>古文之力，不在辞之艰深，而在理之明切。</p>
+      </div>
+      <nav aria-label="页脚导航">
+        <a href="{{ url_for('articles/') }}">全部文章</a>
+        <a href="{{ url_for('about/') }}">编纂原则</a>
+        <a href="https://github.com/{{ repo }}" target="_blank" rel="noopener noreferrer">GitHub 源码</a>
+      </nav>
+    </div>
+    <div class="container site-footer__bottom">
+      <small>本网站直接由仓库 Markdown 生成 · 无追踪脚本 · 文章以仓库原稿为准</small>
+      <small>© {{ year }} YuHan Articles</small>
+    </div>
+  </footer>
+</body>
+</html>

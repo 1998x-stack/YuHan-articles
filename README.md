@@ -48,6 +48,21 @@ Markdown 是唯一正文源；Word、PDF 由 `scripts/build_articles.py` 自动�
 - [分类与跨主题归档规则](docs/taxonomy.md)
 - [新增文章手册](docs/adding-an-article.md)
 
+## 在线阅读站（GitHub Pages）
+
+站点源代码位于 [site/](site/README.md)，从已发表文章的 Markdown 与 article.json 自动生成可直接阅读的 HTML，包含中文排版、八部分类、检索筛选、深浅色模式、Word/PDF 下载及 RSS。部署说明及完整 CSS 设计体系见 [docs/website.md](docs/website.md)。
+
+**启用入口：** [https://1998x-stack.github.io/YuHan-articles/](https://1998x-stack.github.io/YuHan-articles/)（需先在 GitHub 仓库 Settings → Pages 中将 Source 设为 GitHub Actions，并确认部署成功）。
+
+本地构建：
+
+~~~bash
+python3 -m pip install -r requirements-site.txt
+python3 scripts/build_site.py --site-url http://localhost:8000/
+python3 scripts/validate_site.py --base-path / --min-articles 1
+python3 -m http.server 8000 --directory _site
+~~~
+
 ## 快速开始
 
 ### 直接使用 Prompt

@@ -73,3 +73,11 @@ python3 scripts/validate_skills.py
 - 遵守 [articles/TAXONOMY.md](articles/TAXONOMY.md)：按主要论证对象选择唯一主分类，跨主题仅增加 `article.json.topics` 标签。
 - 子目 README 是有效占位与入口，勿创建无内容 `.gitkeep` 或虚构作品。
 - 发布新篇须同步维护子目 README、部类 README、`articles/CATALOG.md`，DOCX/PDF 从 Markdown 生成。
+
+## 网站设计与部署契约
+
+- 网站模板与 CSS/JS 只保存在 site/；所有文章从 articles/ 中 status=published 的 article.json 和 Markdown 单一来源生成，禁止将同一篇正文粘贴到 HTML 模板。
+- 构建脚本为 scripts/build_site.py，输出到忽略提交的 _site/；正式站点路径包含 /YuHan-articles/，新增静态链接必须处理该项目子路径与中文 URL 编码。
+- Markdown 转 HTML 后必须经安全白名单过滤；元数据由 Jinja2 转义，绝不允许文章输入执行脚本。
+- 网页兼顾中文衬线长文排印、移动端、键盘操作、打印、深浅色、无 JS 浏览与无远程追踪脚本；详见 docs/website.md。
+- 修改网页后必须通过 scripts/validate_site.py 和 GitHub Actions Pages 构建。网站“部署成功”只有在 deploy job 成功并且公开网址确实可访问时才能宣称。
