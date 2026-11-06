@@ -25,7 +25,7 @@ articles/02-制度与治理/纪检监察/论执纪之难/
 
 ## 四、出版与维护
 
-`pip install python-docx reportlab` 并安装中文 TrueType 字体，例如 Ubuntu 的 `fonts-arphic-gbsn00lp`，然后运行 `python scripts/build_articles.py`。
+先执行 `python3 -m pip install python-docx reportlab`。PDF 优先嵌入可用的中文 TrueType 字体；如系统没有兼容字体，脚本会回退至 ReportLab 内置 `STSong-Light`（不嵌入字体，部分阅读器可能需要字体替代）。正式出版建议按照 [字体配置与授权说明](fonts.md) 安装系统字体或设置 `YUHAN_CJK_FONT`，然后运行 `python3 scripts/build_articles.py`。
 
 GitHub Actions 会在正文、生成脚本或工作流变化后生成 DOCX/PDF 并提交。发布后检查 GitHub 的文件列表，确保同名的 `.md/.docx/.pdf` 均存在。二进制文件为自动生成件，排版改动应修改生成脚本。
 

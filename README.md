@@ -32,7 +32,7 @@
 - [文章分类设计与收录流程](articles/STRUCTURE.md)
 - [归档标准与出版流程](docs/article-archive-conventions.md)
 
-Markdown 是唯一正文源；Word、PDF 由 `scripts/build_articles.py` 自动生成，不应直接分头编辑。
+Markdown 是唯一正文源；Word、PDF 由 `scripts/build_articles.py` 自动生成，不应直接分头编辑。PDF 字体无需预设某一发行版的绝对路径，详见 [字体配置（安装、回退、嵌入与授权）](docs/fonts.md)。
 
 
 ## 分类文章库（新增导航）

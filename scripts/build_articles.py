@@ -4,7 +4,9 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
+import warnings
 from pathlib import Path
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -16,15 +18,23 @@ from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 
 ROOT = Path(__file__).resolve().parents[1]
+# Optional font candidates for embedding. Paths vary by OS/distribution.
+# See docs/fonts.md. Never rely on these being installed.
 CJK_FONTS = [
+    ROOT / 'fonts' / 'CJK.ttf',  # private local asset (not tracked by Git)
     Path('/usr/share/fonts/truetype/arphic-gbsn00lp/gbsn00lp.ttf'),
+    Path('/usr/share/fonts/truetype/arphic-gkai00mp/gkai00mp.ttf'),
     Path('/usr/share/fonts/truetype/wqy/wqy-microhei.ttc'),
     Path('/usr/share/fonts/truetype/arphic/uming.ttc'),
+    Path('C:/Windows/Fonts/simsun.ttc'),
+    Path('C:/Windows/Fonts/simhei.ttf'),
 ]
+DOCX_FONT = os.getenv('YUHAN_DOCX_FONT', 'Noto Serif CJK SC')
 
 def manuscript(text: str):
     """Read a Markdown essay, preserving its endnotes in printable form."""
@@ -55,8 +65,8 @@ def add_runs(paragraph, value):
         is_bold = piece.startswith('**') and piece.endswith('**')
         run = paragraph.add_run(piece[2:-2] if is_bold else piece)
         run.bold = is_bold
-        run.font.name = 'Noto Serif CJK SC'
-        run._element.get_or_add_rPr().rFonts.set(qn('w:eastAsia'), 'Noto Serif CJK SC')
+        run.font.name = DOCX_FONT
+        run._element.get_or_add_rPr().rFonts.set(qn('w:eastAsia'), DOCX_FONT)
         run.font.size = Pt(11.5)
 
 def build_docx(title, sections, target):
@@ -69,11 +79,11 @@ def build_docx(title, sections, target):
     h.alignment = WD_ALIGN_PARAGRAPH.CENTER
     h.paragraph_format.space_after = Pt(24)
     for run in h.runs:
-        run.font.name = 'Noto Serif CJK SC'
-        run._element.get_or_add_rPr().rFonts.set(qn('w:eastAsia'), 'Noto Serif CJK SC')
+        run.font.name = DOCX_FONT
+        run._element.get_or_add_rPr().rFonts.set(qn('w:eastAsia'), DOCX_FONT)
         run.font.size = Pt(21)
     normal = doc.styles['Normal']
-    normal.font.name = 'Noto Serif CJK SC'
+    normal.font.name = DOCX_FONT
     normal.font.size = Pt(11.5)
     for val in sections:
         p = doc.add_paragraph()
@@ -92,12 +102,56 @@ def build_docx(title, sections, target):
     doc.save(target)
 
 def pick_font():
-    for path in CJK_FONTS:
-        if path.is_file():
-            pdfmetrics.registerFont(TTFont('YuHanCJK', str(path), subfontIndex=0))
-            pdfmetrics.registerFontFamily('YuHanCJK', normal='YuHanCJK', bold='YuHanCJK')
+    """Select an embeddable local TrueType font, or use ReportLab CJK CID fallback.
+
+    YUHAN_CJK_FONT is an explicit override: invalid paths/fonts fail clearly.
+    Without an override, optional system fonts are tried in order and a built-in
+    non-embedded CID font is used if no compatible font is available.
+    """
+    override = os.getenv('YUHAN_CJK_FONT', '').strip()
+    candidates = [Path(override).expanduser()] if override else CJK_FONTS
+    errors = []
+    for path in candidates:
+        if not path.is_file():
+            if override:
+                raise FileNotFoundError(
+                    f'YUHAN_CJK_FONT points to a missing file: {path}'
+                )
+            continue
+        try:
+            pdfmetrics.registerFont(
+                TTFont('YuHanCJK', str(path), subfontIndex=0)
+            )
+            pdfmetrics.registerFontFamily(
+                'YuHanCJK', normal='YuHanCJK', bold='YuHanCJK',
+                italic='YuHanCJK', boldItalic='YuHanCJK'
+            )
             return 'YuHanCJK'
-    raise RuntimeError('Missing CJK TrueType font. Install fonts-arphic-gbsn00lp on Linux.')
+        except Exception as exc:
+            # Some .ttc/.otf fonts contain PostScript outlines ReportLab
+            # cannot embed; don't abandon the whole publication.
+            errors.append(f'{path}: {exc}')
+            if override:
+                raise RuntimeError(
+                    f'YUHAN_CJK_FONT cannot be embedded by ReportLab: {path}. '
+                    'Use a TrueType-outlines .ttf/.ttc font.'
+                ) from exc
+
+    warnings.warn(
+        'No embeddable CJK TrueType font found; using STSong-Light CID '
+        'fallback. The PDF will not embed its font and some readers may '
+        'require CJK font substitution. For portable PDFs, install a '
+        'compatible CJK TTF or set YUHAN_CJK_FONT. '
+        + ('Rejected candidates: ' + '; '.join(errors) if errors else ''),
+        RuntimeWarning,
+        stacklevel=2,
+    )
+    pdfmetrics.registerFont(UnicodeCIDFont('STSong-Light'))
+    pdfmetrics.registerFontFamily(
+        'STSong-Light', normal='STSong-Light', bold='STSong-Light',
+        italic='STSong-Light', boldItalic='STSong-Light',
+    )
+    return 'STSong-Light'
 
 def pdf_markup(s):
     escaped = html.escape(s)
