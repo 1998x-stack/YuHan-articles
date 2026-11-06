@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="content" class="container classic-reading">
+  <nav class="breadcrumbs" aria-label="当前位置"><a href="{{ url_for('') }}">首页</a><span aria-hidden="true">/</span><a href="{{ url_for('classics/') }}">韩愈原典</a><span aria-hidden="true">/</span><span aria-current="page">{{ classic.title }}</span></nav>
+  <article class="article classic-reading__article">
+    <header class="article__header">
+      <div class="article__eyebrow"><span>韩愈原作</span><span class="dot" aria-hidden="true">·</span><span>唐</span><span class="dot" aria-hidden="true">·</span><span>{{ classic.genre }}</span></div>
+      <h1>{{ classic.title }}</h1>
+      <p class="article__summary">{{ classic.description }}</p>
+      <div class="article__meta"><span>作者：韩愈</span><span>{{ classic.reading_minutes }} 分钟阅读</span><span>简体标点整理本</span></div>
+      <div class="article__tools">
+        <a class="file-link" href="{{ classic.source_url }}" target="_blank" rel="noopener noreferrer">参校原典 <span aria-hidden="true">↗</span></a>
+        <a class="file-link file-link--quiet" href="{{ classic.repo_url }}" target="_blank" rel="noopener noreferrer">查看 Markdown <span aria-hidden="true">↗</span></a>
+        <a class="file-link file-link--quiet" href="{{ classic.notes_url }}" target="_blank" rel="noopener noreferrer">版本说明 <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+    <div class="article__divider" aria-hidden="true"><span>◆</span></div>
+    <div class="prose" id="article-body">{{ classic.html | safe }}</div>
+    <div class="article__end" aria-hidden="true">终</div>
+    <aside class="classic-source" aria-label="版本说明">
+      <span class="section-kicker">版本与来源</span>
+      <h2>古文原典</h2>
+      <p>此篇是韩愈本人作品，非 AI 模仿改写。本文采用简体标点整理，部分文字存在版本异文；以逐篇版本记录为准。原典参校出处：{{ classic.source_label }}。</p>
+      <a class="text-link" href="{{ classic.notes_url }}" target="_blank" rel="noopener noreferrer">阅读校阅记录 <span aria-hidden="true">↗</span></a>
+    </aside>
+  </article>
+  <nav class="article-pagination classic-pagination" aria-label="前后原典">
+    {% if prev_classic %}<a href="{{ prev_classic.url }}"><span>上一篇原典</span><strong>{{ prev_classic.title }}</strong></a>{% else %}<span class="article-pagination__empty"></span>{% endif %}
+    {% if next_classic %}<a href="{{ next_classic.url }}"><span>下一篇原典</span><strong>{{ next_classic.title }}</strong></a>{% endif %}
+  </nav>
+</main>
+{% endblock %}

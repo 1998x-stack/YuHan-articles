@@ -153,6 +153,62 @@ def collect(root: Path) -> tuple[list[dict], list[dict]]:
     return categories,articles
 
 
+def collect_classics(root: Path) -> list[dict]:
+    """Read verified Han Yu originals separately from modern-style adaptations.
+
+    A classic is never counted as an article/ adaptation. Strict input
+    validation prevents draft, missing, or unsafe manifests being published.
+    """
+    folder = root / "classics"
+    if not folder.is_dir():
+        return []
+    originals = []
+    seen_orders = set()
+    for manifest in sorted(folder.glob("*/meta.json")):
+        meta = json.loads(manifest.read_text(encoding="utf-8"))
+        if meta.get("status") != "published":
+            continue
+        if meta.get("author") != "韩愈" or meta.get("dynasty") != "唐":
+            raise ValueError(f"Invalid classical author attribution: {manifest}")
+        slug = manifest.parent.name
+        if meta.get("slug") != slug or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):
+            raise ValueError(f"Invalid classic slug: {manifest}")
+        filename = meta.get("manuscript")
+        if not isinstance(filename, str) or Path(filename).name != filename or not filename.endswith(".md"):
+            raise ValueError(f"Unsafe classic manuscript path: {manifest}")
+        source = manifest.parent / filename
+        if not source.is_file():
+            raise FileNotFoundError(f"Missing classic manuscript: {source}")
+        order = meta.get("order")
+        if not isinstance(order, int) or isinstance(order, bool) or order <= 0 or order in seen_orders:
+            raise ValueError(f"Invalid or duplicate classic order: {manifest}")
+        seen_orders.add(order)
+        title = meta.get("title")
+        description = meta.get("description")
+        genre = meta.get("genre")
+        source_label = meta.get("source_label")
+        source_url = meta.get("source_url")
+        if not all(isinstance(v, str) and v.strip() for v in (title, description, genre, source_label)):
+            raise ValueError(f"Incomplete classical metadata: {manifest}")
+        if not isinstance(source_url, str) or not source_url.startswith("https://zh.wikisource.org/"):
+            raise ValueError(f"Untrusted classical source URL: {manifest}")
+        original = source.read_text(encoding="utf-8")
+        if not original.startswith("# ") or not original.splitlines()[0].lstrip("# ").startswith(title):
+            raise ValueError(f"Original headline differs from metadata: {source}")
+        body = re.sub(r"(?m)^# .+(?:\r?\n|$)", "", original, count=1).strip()
+        if len(body) < 100:
+            raise ValueError(f"Original is unexpectedly short: {source}")
+        md = Markdown(extensions=["extra", "toc", "sane_lists"])
+        html_body = sanitize(md.convert(body))
+        originals.append(dict(
+            slug=slug, title=title, genre=genre,
+            description=description, source_label=source_label,
+            source_url=source_url, reading_minutes=max(1, round(len(re.sub(r"\s+", "", body)) / 470)),
+            html=html_body, order=order, source_path=source, url="", repo_url="", notes_url="",
+        ))
+    return sorted(originals, key=lambda c: c["order"])
+
+
 def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
     parsed = urlsplit(site_url)
     if parsed.scheme not in ("https","http") or not parsed.netloc or parsed.query or parsed.fragment:
@@ -168,6 +224,7 @@ def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
     def category_url(name: str) -> str:
         return url_for(f"categories/{name}/")
     categories, articles = collect(root)
+    classics = collect_classics(root)
     for category in categories:
         category["url"] = category_url(category["slug"])
     for item in articles:
@@ -182,6 +239,15 @@ def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
                 parent = item["manifest_path"].relative_to(root / "articles").parent.as_posix()
                 item[ext+"_url"] = url_for("files/" + parent + "/" + source.name)
 
+    for classic in classics:
+        classic["url"] = url_for("classics/" + classic["slug"] + "/")
+        classic["repo_url"] = "https://github.com/" + repo + "/blob/main/" + encode_route(
+            classic["source_path"].relative_to(root).as_posix()
+        )
+        classic["notes_url"] = "https://github.com/" + repo + "/blob/main/" + encode_route(
+            (classic["source_path"].parent / "README.md").relative_to(root).as_posix()
+        )
+
     output = output.resolve()
     if output.name != "_site" or output == root.resolve() or output.is_symlink():
         raise ValueError("Refusing to delete unsafe output; use a folder named _site")
@@ -193,7 +259,7 @@ def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
     env = Environment(loader=FileSystemLoader(str(root/"site"/"templates")),
                       autoescape=select_autoescape(["html","xml"]),
                       keep_trailing_newline=True)
-    commons = dict(repo=repo,categories=categories,articles=articles,
+    commons = dict(repo=repo,categories=categories,articles=articles,classics=classics,
                    url_for=url_for,category_url=category_url,
                    year=datetime.now(timezone.utc).year)
     def render(path: str, template: str, kind: str, title: str, summary: str, **data) -> None:
@@ -206,6 +272,13 @@ def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
     render("","home.html","home","古文论辩，义理相成","从 Markdown 构建的韩愈式古文论辩文集。")
     render("articles","archive.html","archive","文章目录","按主题与关键词检索已刊文言论说。")
     render("about","about.html","about","关于文集","古文写作方法、事实边界与原稿来源说明。")
+    render("classics","classics.html","classics","韩愈古文原典五篇",
+           "《师说》《马说》《进学解》《原道》《祭十二郎文》，韩愈真作简体标点选读。")
+    for index, classic in enumerate(classics):
+        render("classics/" + classic["slug"], "classic.html", "classic",
+               classic["title"], classic["description"], classic=classic,
+               prev_classic=classics[index-1] if index else None,
+               next_classic=classics[index+1] if index+1 < len(classics) else None)
     for category in categories:
         selected = [a for a in articles if a["category"]==category["slug"]]
         render("categories/"+category["slug"],"category.html","category",
@@ -228,7 +301,7 @@ def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
         encoding="utf-8")
     (output/"robots.txt").write_text(
         "User-agent: *\nAllow: /\nSitemap: "+canonical("sitemap.xml")+"\n",encoding="utf-8")
-    routes = ["","articles/","about/"]+["categories/"+c["slug"]+"/" for c in categories]+[a["route"] for a in articles]
+    routes = ["","articles/","about/","classics/"]+["categories/"+c["slug"]+"/" for c in categories]+[a["route"] for a in articles]+["classics/"+c["slug"]+"/" for c in classics]
     site_xml = ET.Element("urlset",xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
     for route in routes:
         entry = ET.SubElement(site_xml,"url")
@@ -250,8 +323,8 @@ def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
         dict(title=a["title"],url=a["url"],category=a["category_label"],
              date=a["date"],topics=a["topics"],excerpt=a["excerpt"])
         for a in articles],ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(f"Built {len(articles)} published articles and {len(categories)} category pages in {output}")
-    return dict(articles=len(articles),categories=len(categories),output=output)
+    print(f"Built {len(articles)} modern articles, {len(classics)} Han Yu originals and {len(categories)} category pages in {output}")
+    return dict(articles=len(articles),classics=len(classics),categories=len(categories),output=output)
 
 
 def main() -> int:

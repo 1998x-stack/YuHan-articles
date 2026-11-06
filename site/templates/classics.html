@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<main id="content" class="container classics-page">
+  <nav class="breadcrumbs" aria-label="当前位置"><a href="{{ url_for('') }}">首页</a><span aria-hidden="true">/</span><span aria-current="page">韩愈原典</span></nav>
+  <header class="page-intro">
+    <span class="section-kicker">韩愈真作 · Original Works</span>
+    <h1>五篇古文名作</h1>
+    <p>取《师说》《马说》《进学解》《原道》《祭十二郎文》五篇，以论说、寓言、设难、推原及祭文见古文笔力。这里收录的是韩愈本人原作的现代标点整理本，非本项目模仿创作。</p>
+  </header>
+  <div class="classics-note">
+    <strong>原典与改写有别</strong>
+    <p>本文集选目并非历史公认的“前五名”排名；每篇均标明原典出处、编者的版本说明及公开核对链接。</p>
+  </div>
+  <section class="classics-grid" aria-label="五篇原典">
+    {% for classic in classics %}
+    <article class="classic-card">
+      <div class="classic-card__number">{{ "%02d"|format(loop.index) }} <span> / {{ "%02d"|format(classics|length) }}</span></div>
+      <div class="classic-card__meta">唐 · 韩愈 <span aria-hidden="true">·</span> {{ classic.genre }}</div>
+      <h2><a href="{{ classic.url }}">{{ classic.title }}</a></h2>
+      <p>{{ classic.description }}</p>
+      <div class="classic-card__foot">
+        <span>{{ classic.reading_minutes }} 分钟阅读</span>
+        <a href="{{ classic.url }}" aria-label="阅读{{ classic.title }}原典">读原文 <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+    {% else %}
+    <div class="empty-state">古文原典正在整理校核，暂未入库。</div>
+    {% endfor %}
+  </section>
+  <div class="classics-bottom"><p>所载正文保留原典篇章，标点和异文处理按逐篇版本说明核对；不以 AI 补写为古人原文。</p><a class="text-link" href="{{ url_for('articles/') }}">浏览现代论辩文章 →</a></div>
+</main>
+{% endblock %}

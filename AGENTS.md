@@ -81,3 +81,10 @@ python3 scripts/validate_skills.py
 - Markdown 转 HTML 后必须经安全白名单过滤；元数据由 Jinja2 转义，绝不允许文章输入执行脚本。
 - 网页兼顾中文衬线长文排印、移动端、键盘操作、打印、深浅色、无 JS 浏览与无远程追踪脚本；详见 docs/website.md。
 - 修改网页后必须通过 scripts/validate_site.py 和 GitHub Actions Pages 构建。网站“部署成功”只有在 deploy job 成功并且公开网址确实可访问时才能宣称。
+
+## 韩愈原典校阅规则
+
+- `classics/` 存放**韩愈真实作品**，与 `articles/` 的现代文言改写分离；任何模型创作不能伪称“韩愈原作”。
+- 五篇选目清单和参校卷次见 `classics/README.md` 与 `docs/classic-editions.md`；每篇 `meta.json` 的 `author` 固定为“韩愈”、`dynasty` 为“唐”、`order` 为互不重复的正整数。
+- 正文为原文的简体标点整理本；不以所谓现代润色覆盖原句。不擅自增加古人言语、改造历史立场。现代编者注释和异文记录只写在逐篇 README。
+- 改动原典时必须有可复核的公有领域原典底本并记录差异；需运行 `python3 -m unittest discover -s tests -p 'test_classics.py'` 和网页构建检验。

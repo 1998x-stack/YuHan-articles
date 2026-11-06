@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f8f5ef">
   <meta name="description" content="{{ page.description }}">
-  <meta property="og:type" content="{{ 'article' if page.kind == 'article' else 'website' }}">
+  <meta property="og:type" content="{{ 'article' if page.kind in ('article', 'classic') else 'website' }}">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:site_name" content="韩愈文集 · 古文论辩">
   <meta property="og:title" content="{{ page.title }}">
@@ -31,6 +31,7 @@
       <nav class="top-nav" aria-label="主导航">
         <a class="{{ 'is-current' if page.kind == 'home' else '' }}" href="{{ url_for('') }}" {% if page.kind == 'home' %}aria-current="page"{% endif %}>首页</a>
         <a class="{{ 'is-current' if page.kind in ('archive','category') else '' }}" href="{{ url_for('articles/') }}" {% if page.kind in ('archive','category') %}aria-current="page"{% endif %}>文章目录</a>
+        <a class="{{ 'is-current' if page.kind in ('classics','classic') else '' }}" href="{{ url_for('classics/') }}" {% if page.kind in ('classics','classic') %}aria-current="page"{% endif %}>韩愈原典</a>
         <a class="{{ 'is-current' if page.kind == 'about' else '' }}" href="{{ url_for('about/') }}" {% if page.kind == 'about' %}aria-current="page"{% endif %}>关于文集</a>
       </nav>
       <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题"><span aria-hidden="true">◐</span><span class="sr-only">切换明暗主题</span></button>
@@ -45,6 +46,7 @@
       </div>
       <nav aria-label="页脚导航">
         <a href="{{ url_for('articles/') }}">全部文章</a>
+        <a href="{{ url_for('classics/') }}">韩愈原典</a>
         <a href="{{ url_for('about/') }}">编纂原则</a>
         <a href="https://github.com/{{ repo }}" target="_blank" rel="noopener noreferrer">GitHub 源码</a>
       </nav>

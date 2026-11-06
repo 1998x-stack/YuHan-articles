@@ -31,7 +31,7 @@ class Inspect(HTMLParser):
             self.links.append(attr["href"])
 
 
-def validate(root: Path, base: str, expected: int) -> list[str]:
+def validate(root: Path, base: str, expected: int, min_classics: int = 0) -> list[str]:
     errors = []
     root = root.resolve()
     pages = sorted(root.rglob("*.html"))
@@ -73,6 +73,14 @@ def validate(root: Path, base: str, expected: int) -> list[str]:
             if parsed.fragment and target.resolve() == page.resolve():
                 if unquote(parsed.fragment) not in parser.ids:
                     errors.append(f"{page}: broken anchor: {href}")
+    if min_classics:
+        original_index = root / "classics" / "index.html"
+        originals = list((root / "classics").glob("*/index.html"))
+        if not original_index.is_file() or len(originals) < min_classics:
+            errors.append(
+                f"Expected at least {min_classics} complete Han Yu original pages, "
+                f"found {len(originals)}"
+            )
     search = root / "search-index.json"
     if not search.is_file():
         errors.append("Missing search-index.json")
@@ -90,8 +98,9 @@ def main() -> int:
     parser.add_argument("--site", type=Path, default=Path("_site"))
     parser.add_argument("--base-path", default="/YuHan-articles/")
     parser.add_argument("--min-articles", type=int, default=1)
+    parser.add_argument("--min-classics", type=int, default=0)
     args = parser.parse_args()
-    errors = validate(args.site, args.base_path, args.min_articles)
+    errors = validate(args.site, args.base_path, args.min_articles, args.min_classics)
     if errors:
         for err in errors:
             print("ERROR:", err)

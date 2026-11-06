@@ -13,7 +13,7 @@
       <div class="hero__stats" aria-label="文集统计">
         <div><strong>{{ articles|length }}</strong><span>篇已收录文章</span></div>
         <div><strong>{{ categories|length }}</strong><span>大主题领域</span></div>
-        <div><strong>Markdown</strong><span>唯一正文来源</span></div>
+        <div><strong>{{ classics|length }}</strong><span>篇韩愈原典</span></div>
       </div>
     </div>
     <div class="hero__art" aria-hidden="true">
@@ -47,6 +47,23 @@
         <span class="topic-card__count">{{ category.count }} 篇</span><span class="topic-card__arrow" aria-hidden="true">↗</span>
       </a>
       {% endfor %}
+    </div>
+  </section>
+  <section class="section classics-feature" aria-labelledby="classics-feature-title">
+    <div class="container">
+      <div class="section-heading">
+        <div><span class="section-kicker">原典 · Classics</span><h2 id="classics-feature-title">韩愈五篇名作</h2><p>读其真作，知其章法：原文与现代韩愈式创作分库保存。</p></div>
+        <a class="text-link" href="{{ url_for('classics/') }}">进入原典馆 <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="classic-feature-grid">
+        {% for classic in classics %}
+          <a class="classic-feature-card" href="{{ classic.url }}">
+            <span class="classic-feature-card__number">{{ "%02d"|format(loop.index) }}</span>
+            <span class="classic-feature-card__copy"><strong>{{ classic.title }}</strong><small>{{ classic.genre }} · 韩愈原作</small></span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        {% endfor %}
+      </div>
     </div>
   </section>
   <section class="statement">

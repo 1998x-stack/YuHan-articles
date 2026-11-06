@@ -12,3 +12,7 @@
 - static/assets/site.js：主题偏好、站内检索、阅读进度
 
 原则：不引用 CDN、外部字体或追踪脚本；无 JavaScript 仍可浏览文章。构建器会对 Markdown 生成的 HTML 进行白名单清理。详情见 docs/website.md。
+
+## 韩愈原典
+
+`classics/` 与 `articles/` 两种内容独立显示：前者属于韩愈本人公有领域古文，后者属于当代按韩愈文风创作的论说。网页入口 `/classics/`，逐篇路径 `/classics/<slug>/`，五篇源码另有明确的来源和版本记录。详情：[原典编纂说明](../docs/classic-editions.md)。

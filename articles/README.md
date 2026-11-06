@@ -46,3 +46,7 @@ articles/一级大类/二级子目/单篇篇名/
 - [新增文章步骤](../docs/adding-an-article.md)
 - [归档与出版规范](../docs/article-archive-conventions.md)
 - [新文章模板](_templates/article/README.md)
+
+## 韩愈本人原作的归档位置
+
+本目录 `articles/` 只收录现代论题的韩愈式古文创作。韩愈本人《师说》《马说》《进学解》《原道》《祭十二郎文》不按现实议题归入这里，请至 [独立原典馆](../classics/README.md) 查阅。网页可从 [韩愈五篇原典](https://1998x-stack.github.io/YuHan-articles/classics/) 浏览。

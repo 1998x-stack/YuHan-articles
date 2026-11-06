@@ -106,3 +106,9 @@ python3 -m http.server 8000 --directory _site
 - 分类未显示文章：检查 article.json 的 status=published、分类路径与 manuscript。
 - 字体、分页或脚注：统一修改 CSS 或 Markdown 原稿，而不是手工编辑生成 HTML。
 - 构建失败：根据工作流 validate_site 输出定位断开的资源路径或 Markdown 输出中的不安全标签。
+
+## 韩愈原典馆
+
+原典馆新增 `/YuHan-articles/classics/` 与五篇 `/classics/<slug>/` 阅读页；网页从 `classics/` 的 `meta.json` 与完整 Markdown 原文自动生成，不需要复制粘贴到 HTML 模板。原典馆不改变 `articles/` 的现代改写稿数量。主导航、首页选读及网站地图均包括这五篇。编辑规范见 [古文版本校阅](classic-editions.md)。
+
+Pages 发布时要求 `python3 -m unittest discover -s tests -p 'test_classics.py'` 和 `python3 scripts/validate_site.py --min-classics 5` 同时成功。

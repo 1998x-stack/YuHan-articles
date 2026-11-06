@@ -396,3 +396,49 @@ a:hover { color: var(--accent); }
   .prose a { color: black; }
   @page { size: A4; margin: 20mm; }
 }
+
+/* ─── 10 · Public-domain Han Yu classics collection ─── */
+.classics-page { min-height: 70vh; padding-bottom: var(--space-9); }
+.classics-note { display: flex; gap: 24px; align-items: baseline; margin: 27px 0 34px; padding: 15px 19px; border-left: 3px solid var(--accent); background: var(--accent-wash); color: var(--ink-soft); }
+.classics-note strong { flex-shrink: 0; color: var(--accent); font: 700 14px var(--serif); }
+.classics-note p { margin: 0; font-size: 12px; line-height: 1.9; }
+.classics-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+.classic-card { position: relative; min-height: 274px; display: flex; flex-direction: column; padding: 30px; border: 1px solid var(--border); background: var(--sheet); border-radius: var(--radius-md); transition: box-shadow var(--transition), border-color var(--transition); }
+.classic-card:hover { box-shadow: var(--shadow); border-color: var(--border-strong); }
+.classic-card__number { font: 600 24px var(--serif); color: var(--accent); }
+.classic-card__number span { font: 12px var(--sans); color: var(--subtle); }
+.classic-card__meta { margin: 13px 0 2px; color: var(--muted); font-size: 11px; letter-spacing: .12em; }
+.classic-card h2 { margin: 5px 0 12px; font: 700 28px/1.5 var(--serif); }
+.classic-card p { margin: 0; font: 14px/1.8 var(--serif); color: var(--muted); }
+.classic-card__foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 26px; color: var(--muted); font-size: 12px; }
+.classic-card__foot a { color: var(--accent); font-weight: 700; }
+.classics-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 28px; color: var(--muted); font-size: 12px; }
+.classics-bottom p { margin: 0; max-width: 710px; }
+.classic-reading { padding-bottom: 85px; }
+.classic-reading__article { max-width: 770px; }
+.classic-reading__article .article__header { padding-top: 18px; }
+.classic-reading__article .prose { font-size: clamp(18px, 1.52vw, 20px); line-height: 2.05; }
+.classic-source { margin: 42px 0 0; padding: 26px 28px; border: 1px solid var(--border); background: var(--paper-alt); border-radius: var(--radius-md); }
+.classic-source h2 { margin: 9px 0 6px; font: 700 19px var(--serif); }
+.classic-source p { margin: 0 0 13px; color: var(--muted); font: 13px/1.9 var(--sans); }
+.classic-pagination { max-width: 770px; margin-inline: auto; }
+.classics-feature { background: var(--paper-alt); border-top: 1px solid var(--border); }
+.classic-feature-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; }
+.classic-feature-card { display: flex; flex-direction: column; align-items: start; gap: 9px; min-height: 174px; padding: 20px; background: var(--sheet); border: 1px solid var(--border); border-radius: var(--radius-sm); transition: transform var(--transition), border-color var(--transition); }
+.classic-feature-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+.classic-feature-card__number { color: var(--accent); font: 600 13px var(--serif); }
+.classic-feature-card__copy { display: flex; flex-direction: column; gap: 6px; margin-top: auto; }
+.classic-feature-card__copy strong { font: 700 21px var(--serif); }
+.classic-feature-card__copy small { color: var(--muted); font-size: 11px; }
+.classic-feature-card > span:last-child { align-self: end; color: var(--accent); }
+@media (max-width: 1050px) { .classic-feature-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media (max-width: 700px) {
+  .classics-grid { grid-template-columns: 1fr; }
+  .classics-note { flex-direction: column; gap: 6px; }
+  .classics-bottom { align-items: start; flex-direction: column; }
+  .classic-feature-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .classic-card { min-height: 230px; padding: 23px; }
+  .classic-feature-card { min-height: 150px; }
+}
+@media (max-width: 420px) { .classic-feature-grid { grid-template-columns: 1fr; } }
+@media print { .classics-note, .classic-source, .classic-pagination { display: none !important; } }

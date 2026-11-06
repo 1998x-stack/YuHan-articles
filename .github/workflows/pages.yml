@@ -5,16 +5,19 @@ on:
     branches: [main]
     paths:
       - 'articles/**'
+      - 'classics/**'
       - 'site/**'
       - 'scripts/build_site.py'
       - 'scripts/validate_site.py'
       - 'scripts/build_articles.py'
       - 'requirements-site.txt'
       - 'tests/test_site.py'
+      - 'tests/test_classics.py'
       - '.github/workflows/pages.yml'
   pull_request:
     paths:
       - 'articles/**'
+      - 'classics/**'
       - 'site/**'
       - 'scripts/build_site.py'
       - 'scripts/validate_site.py'
@@ -51,6 +54,8 @@ jobs:
           sudo apt-get install -y fonts-arphic-gbsn00lp
       - name: Run site unit tests
         run: python3 -m unittest discover -s tests -p 'test_site.py'
+      - name: Validate five Han Yu originals
+        run: python3 -m unittest discover -s tests -p 'test_classics.py'
       - name: Rebuild PDF and Word from canonical Markdown
         run: python3 scripts/build_articles.py
       - name: Generate static HTML reading site
@@ -60,7 +65,7 @@ jobs:
             --site-url 'https://1998x-stack.github.io/YuHan-articles/'
       - name: Validate rendered HTML, links and assets
         run: |
-          python3 scripts/validate_site.py --base-path '/YuHan-articles/' --min-articles 1
+          python3 scripts/validate_site.py --base-path '/YuHan-articles/' --min-articles 1 --min-classics 5
       - name: Upload static site artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4

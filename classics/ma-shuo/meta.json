@@ -1,0 +1,14 @@
+{
+  "slug": "ma-shuo",
+  "title": "马说",
+  "author": "韩愈",
+  "dynasty": "唐",
+  "genre": "杂说",
+  "status": "published",
+  "order": 2,
+  "manuscript": "马说.md",
+  "description": "借千里马与伯乐，讥不识人才而妄称天下无马者。",
+  "source_url": "https://zh.wikisource.org/zh-hans/雜說四",
+  "source_label": "《杂说四首》其四、《古文观止》",
+  "alternate_title": "杂说四"
+}
