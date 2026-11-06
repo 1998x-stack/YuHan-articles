@@ -131,6 +131,8 @@ def main():
     args = parser.parse_args()
     built = 0
     for config in sorted(args.articles_root.rglob('article.json')):
+        if '_templates' in config.relative_to(args.articles_root).parts:
+            continue
         folder = config.parent
         meta = json.loads(config.read_text(encoding='utf-8'))
         source = folder / meta['manuscript']
