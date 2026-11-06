@@ -67,3 +67,9 @@ python3 scripts/validate_skills.py
 - 每篇须有 `README.md`、`article.json`、Markdown 正文；DOCX/PDF 按正文通过 `python scripts/build_articles.py` 统一生成。
 - 编辑正文或新增文章须更新 `articles/CATALOG.md` 及分类导航；保持文件名与 `article.json.manuscript` 一致。
 - 不要直接分别修改 Word/PDF 内容，以免三版互不相符。详见 `docs/article-archive-conventions.md`。
+
+## 文章分类维护
+
+- 遵守 [articles/TAXONOMY.md](articles/TAXONOMY.md)：按主要论证对象选择唯一主分类，跨主题仅增加 `article.json.topics` 标签。
+- 子目 README 是有效占位与入口，勿创建无内容 `.gitkeep` 或虚构作品。
+- 发布新篇须同步维护子目 README、部类 README、`articles/CATALOG.md`，DOCX/PDF 从 Markdown 生成。

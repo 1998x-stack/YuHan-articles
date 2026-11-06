@@ -21,6 +21,8 @@
 
 - [文章分类与导航](articles/README.md)
 - [作品总目录](articles/CATALOG.md)
+- [完整分类与全部占位子目](articles/TAXONOMY.md)
+- [《原养老公平论》](articles/02-制度与治理/社会保障/原养老公平论/README.md)（制度与治理／社会保障）
 - [主题分类体系（24 子目）](articles/TAXONOMY.md)
 - [《河伯娶妇辨》](articles/01-史论与人物/史事辨/河伯娶妇辨/README.md)（史论与人物／史事辨）
 - [《论执纪之难》](articles/02-制度与治理/纪检监察/论执纪之难/README.md)（制度与治理／纪检监察）
@@ -65,10 +67,12 @@ Pi 支持项目中的 .pi/skills/ 目录及显式 Skill 命令。若修改 Skill
 .
 ├── articles/                               # 八大主题文章库
 │   ├── CATALOG.md                          # 作品索引
+│   ├── TAXONOMY.md                         # 部类／子目／归档规则
 │   ├── STRUCTURE.md                        # 分类体系、子目占位与收录规范
 │   ├── TAXONOMY.md                         # 主题、子目与归档规则
 │   ├── 01-史论与人物/ ... 08-杂说与辨析/
 │   ├── 02-制度与治理/纪检监察/论执纪之难/  # 三格式作品
+│   ├── 02-制度与治理/社会保障/原养老公平论/ # 三格式作品
 │   ├── 04-宗教与风俗/宗教治理/原寺观财弊论/ # 三格式作品
 │   └── _templates/                         # 单篇目录模板
 ├── AGENTS.md
