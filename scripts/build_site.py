@@ -77,6 +77,19 @@ def category_description(folder: Path) -> str:
     return "从本专题的史事、义理与制度出发开展古文论说。"
 
 
+def normalize_numeric_footnotes(source: str) -> str:
+    """Link existing 〔1〕 citation markers to matching Markdown [^1] notes.
+
+    Preserves the canonical manuscript on disk; normalization is HTML-only.
+    Some legacy essays use inline typographical references with Markdown
+    footnote definitions, which otherwise produce dead backlink anchors.
+    """
+    labels = set(re.findall(r"(?m)^\[\^([0-9]+)\]:", source))
+    for label in labels:
+        source = source.replace("〔" + label + "〕", "[^" + label + "]")
+    return source
+
+
 def collect(root: Path) -> tuple[list[dict], list[dict]]:
     base = root / "articles"
     if not base.is_dir():
@@ -123,7 +136,7 @@ def collect(root: Path) -> tuple[list[dict], list[dict]]:
         if not body:
             raise ValueError(f"Empty published article: {source}")
         md = Markdown(extensions=["extra", "toc", "sane_lists"])
-        rendered = md.convert(body)
+        rendered = md.convert(normalize_numeric_footnotes(body))
         articles.append({
             "title":title,"date":published,"topics":topics,
             "category":category,"category_slug":category,
