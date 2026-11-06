@@ -21,6 +21,7 @@
 
 - [文章分类与导航](articles/README.md)
 - [作品总目录](articles/CATALOG.md)
+- [《徽剑案刑罚辨》](articles/02-制度与治理/法治与程序/徽剑案刑罚辨/README.md)（制度与治理／法治与程序）
 - [完整分类与全部占位子目](articles/TAXONOMY.md)
 - [《原养老公平论》](articles/02-制度与治理/社会保障/原养老公平论/README.md)（制度与治理／社会保障）
 - [主题分类体系（24 子目）](articles/TAXONOMY.md)

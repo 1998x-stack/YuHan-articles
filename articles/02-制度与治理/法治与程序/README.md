@@ -4,8 +4,8 @@
 
 **收录范围**：证据、正当程序、执法与司法公正。
 
-## 收录状态
+## 已发表作品
 
-本子目已建档，尚无正式收录的文章；新增作品请按单篇目录规范入库。
+- [《徽剑案刑罚辨》](徽剑案刑罚辨/README.md)：从罪名、死缓和审判监督三个层次讨论刑罚正当性与程序说理。
 
-遵循 [文章归档与出版规范](../../../docs/article-archive-conventions.md)，一文一目录，正文 Markdown 与衍生 PDF、DOCX 同名。
+遵循 [文章归档与出版规范](../../../docs/article-archive-conventions.md)，一文一目录，Markdown 与衍生 PDF、DOCX 同名。

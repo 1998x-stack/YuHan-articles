@@ -1,21 +1,25 @@
-# 古文文章目录
+# 古文文章总目录
 
-> 只列已收录作品。空类通过下方主题导航呈现，不预置虚构篇名。所有作品均有独立目录与 `article.json`。
+只列已发表且具有 `article.json` 与 Markdown 正文的真实作品；空子目详见 [分类体系](TAXONOMY.md)。
 
-| 部类 | 子目 | 篇名 | 在线阅读 | 出版格式 |
+| 部类 | 子目 | 篇名 | 在线阅读 | 出版文件 |
 | --- | --- | --- | --- | --- |
-| 02 制度与治理 | 纪检监察 | **论执纪之难** | [Markdown](02-制度与治理/纪检监察/论执纪之难/论执纪之难.md) | [Word](02-制度与治理/纪检监察/论执纪之难/论执纪之难.docx) · [PDF](02-制度与治理/纪检监察/论执纪之难/论执纪之难.pdf) |
-| 03 经济与产业 | 增长与分配 | **原富民论** | [Markdown](03-经济与产业/增长与分配/原富民论/原富民论.md) | [Word](03-经济与产业/增长与分配/原富民论/原富民论.docx) · [PDF](03-经济与产业/增长与分配/原富民论/原富民论.pdf) |
+| 01 史论与人物 | 史事辨 | **河伯娶妇辨** | [Markdown](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/%E5%8F%B2%E4%BA%8B%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8.md) | [Word](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/%E5%8F%B2%E4%BA%8B%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8.docx) · [PDF](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/%E5%8F%B2%E4%BA%8B%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8.pdf) |
+| 02 制度与治理 | 法治与程序 | **徽剑案刑罚辨** | [Markdown](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E6%B3%95%E6%B2%BB%E4%B8%8E%E7%A8%8B%E5%BA%8F/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8.md) | [Word](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E6%B3%95%E6%B2%BB%E4%B8%8E%E7%A8%8B%E5%BA%8F/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8.docx) · [PDF](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E6%B3%95%E6%B2%BB%E4%B8%8E%E7%A8%8B%E5%BA%8F/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8.pdf) |
+| 02 制度与治理 | 纪检监察 | **论执纪之难** | [Markdown](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%BA%AA%E6%A3%80%E7%9B%91%E5%AF%9F/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE.md) | [Word](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%BA%AA%E6%A3%80%E7%9B%91%E5%AF%9F/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE.docx) · [PDF](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%BA%AA%E6%A3%80%E7%9B%91%E5%AF%9F/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE.pdf) |
+| 02 制度与治理 | 社会保障 | **原养老公平论** | [Markdown](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA.md) | [Word](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA.docx) · [PDF](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA.pdf) |
+| 03 经济与产业 | 增长与分配 | **原富民论** | [Markdown](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/%E5%A2%9E%E9%95%BF%E4%B8%8E%E5%88%86%E9%85%8D/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA.md) | [Word](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/%E5%A2%9E%E9%95%BF%E4%B8%8E%E5%88%86%E9%85%8D/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA.docx) · [PDF](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/%E5%A2%9E%E9%95%BF%E4%B8%8E%E5%88%86%E9%85%8D/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA.pdf) |
+| 04 宗教与风俗 | 宗教治理 | **原寺观财弊论** | [Markdown](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/%E5%AE%97%E6%95%99%E6%B2%BB%E7%90%86/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA_%E6%B6%A6%E8%89%B2%E7%A8%BF.md) | [Word](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/%E5%AE%97%E6%95%99%E6%B2%BB%E7%90%86/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA_%E6%B6%A6%E8%89%B2%E7%A8%BF.docx) · [PDF](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/%E5%AE%97%E6%95%99%E6%B2%BB%E7%90%86/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA_%E6%B6%A6%E8%89%B2%E7%A8%BF.pdf) |
 
-## 八大类导航
+## 主题导航
 
-- [01-史论与人物](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/README.md)：以史实为本，辨人物行事、制度兴废与治乱因果。
-- [02-制度与治理](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/README.md)：论组织权责、监督程序与公共治理之名实。
-- [03-经济与产业](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/README.md)：论生产与分配、技术与就业、财政与公共投资。
-- [04-宗教与风俗](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/README.md)：论信仰与社会风俗，辨宗教组织名实及利益结构。
-- [05-社会与人情](05-%E7%A4%BE%E4%BC%9A%E4%B8%8E%E4%BA%BA%E6%83%85/README.md)：论寻常人之处境、养老教育、城乡与群体行为。
-- [06-思想与学术](06-%E6%80%9D%E6%83%B3%E4%B8%8E%E5%AD%A6%E6%9C%AF/README.md)：论知识、思想传统、教育与价值争辩。
-- [07-文论与写作](07-%E6%96%87%E8%AE%BA%E4%B8%8E%E5%86%99%E4%BD%9C/README.md)：论古文精神、章法、论辩与写作工艺。
-- [08-杂说与辨析](08-%E6%9D%82%E8%AF%B4%E4%B8%8E%E8%BE%A8%E6%9E%90/README.md)：收纳跨专题或短篇论辨，须说明其暂不归入其他类的理由。
+- [01-史论与人物](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/README.md)
+- [02-制度与治理](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/README.md)
+- [03-经济与产业](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/README.md)
+- [04-宗教与风俗](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/README.md)
+- [05-社会与人情](05-%E7%A4%BE%E4%BC%9A%E4%B8%8E%E4%BA%BA%E6%83%85/README.md)
+- [06-思想与学术](06-%E6%80%9D%E6%83%B3%E4%B8%8E%E5%AD%A6%E6%9C%AF/README.md)
+- [07-文论与写作](07-%E6%96%87%E8%AE%BA%E4%B8%8E%E5%86%99%E4%BD%9C/README.md)
+- [08-杂说与辨析](08-%E6%9D%82%E8%AF%B4%E4%B8%8E%E8%BE%A8%E6%9E%90/README.md)
 
-编辑正文及目录后，按 [出版规范](../docs/article-archive-conventions.md) 生成并检查三个版本。
+DOCX/PDF 随 Markdown 由 `.github/workflows/publish-articles.yml` 生成；刚发布时请核验二进制文件是否已由工作流入库。
