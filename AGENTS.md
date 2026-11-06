@@ -62,7 +62,8 @@ python3 scripts/validate_skills.py
 
 ## 文章归档与出版
 
-- 文章按 `articles/01-...` 至 `articles/08-...` 分类，二级按子目，三级为独立篇名目录；空分类以 README 保留。
+- 文章按 `articles/01-...` 至 `articles/08-...` 分类，24 个规划子目见 `articles/TAXONOMY.md`；三级为独立篇名目录，空分类以 README 保留。
+- 每篇仅有一个主分类；相关分类在子目 README 设置交叉链接，不得复制同一篇文章。
 - 每篇须有 `README.md`、`article.json`、Markdown 正文；DOCX/PDF 按正文通过 `python scripts/build_articles.py` 统一生成。
 - 编辑正文或新增文章须更新 `articles/CATALOG.md` 及分类导航；保持文件名与 `article.json.manuscript` 一致。
 - 不要直接分别修改 Word/PDF 内容，以免三版互不相符。详见 `docs/article-archive-conventions.md`。

@@ -21,6 +21,8 @@
 
 - [文章分类与导航](articles/README.md)
 - [作品总目录](articles/CATALOG.md)
+- [主题分类体系（24 子目）](articles/TAXONOMY.md)
+- [《河伯娶妇辨》](articles/01-史论与人物/史事辨/河伯娶妇辨/README.md)（史论与人物／史事辨）
 - [《论执纪之难》](articles/02-制度与治理/纪检监察/论执纪之难/README.md)（制度与治理／纪检监察）
 - [归档标准与出版流程](docs/article-archive-conventions.md)
 
@@ -61,6 +63,7 @@ Pi 支持项目中的 .pi/skills/ 目录及显式 Skill 命令。若修改 Skill
 .
 ├── articles/                               # 八大主题文章库
 │   ├── CATALOG.md                          # 作品索引
+│   ├── TAXONOMY.md                         # 主题、子目与归档规则
 │   ├── 01-史论与人物/ ... 08-杂说与辨析/
 │   ├── 02-制度与治理/纪检监察/论执纪之难/  # 三格式作品
 │   └── _templates/                         # 单篇目录模板
