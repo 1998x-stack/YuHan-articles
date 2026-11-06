@@ -1,25 +1,25 @@
 # 古文文章总目录
 
-只列已发表且具有 `article.json` 与 Markdown 正文的真实作品；空子目详见 [分类体系](TAXONOMY.md)。
+仅列已收录的真实作品，不以预留目录充数。各篇 DOCX/PDF 均从 Markdown 正文自动生成。
 
-| 部类 | 子目 | 篇名 | 在线阅读 | 出版文件 |
-| --- | --- | --- | --- | --- |
-| 01 史论与人物 | 史事辨 | **河伯娶妇辨** | [Markdown](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/%E5%8F%B2%E4%BA%8B%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8.md) | [Word](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/%E5%8F%B2%E4%BA%8B%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8.docx) · [PDF](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/%E5%8F%B2%E4%BA%8B%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8/%E6%B2%B3%E4%BC%AF%E5%A8%B6%E5%A6%87%E8%BE%A8.pdf) |
-| 02 制度与治理 | 法治与程序 | **徽剑案刑罚辨** | [Markdown](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E6%B3%95%E6%B2%BB%E4%B8%8E%E7%A8%8B%E5%BA%8F/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8.md) | [Word](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E6%B3%95%E6%B2%BB%E4%B8%8E%E7%A8%8B%E5%BA%8F/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8.docx) · [PDF](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E6%B3%95%E6%B2%BB%E4%B8%8E%E7%A8%8B%E5%BA%8F/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8/%E5%BE%BD%E5%89%91%E6%A1%88%E5%88%91%E7%BD%9A%E8%BE%A8.pdf) |
-| 02 制度与治理 | 纪检监察 | **论执纪之难** | [Markdown](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%BA%AA%E6%A3%80%E7%9B%91%E5%AF%9F/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE.md) | [Word](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%BA%AA%E6%A3%80%E7%9B%91%E5%AF%9F/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE.docx) · [PDF](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%BA%AA%E6%A3%80%E7%9B%91%E5%AF%9F/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE/%E8%AE%BA%E6%89%A7%E7%BA%AA%E4%B9%8B%E9%9A%BE.pdf) |
-| 02 制度与治理 | 社会保障 | **原养老公平论** | [Markdown](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA.md) | [Word](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA.docx) · [PDF](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%9A%9C/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA/%E5%8E%9F%E5%85%BB%E8%80%81%E5%85%AC%E5%B9%B3%E8%AE%BA.pdf) |
-| 03 经济与产业 | 增长与分配 | **原富民论** | [Markdown](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/%E5%A2%9E%E9%95%BF%E4%B8%8E%E5%88%86%E9%85%8D/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA.md) | [Word](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/%E5%A2%9E%E9%95%BF%E4%B8%8E%E5%88%86%E9%85%8D/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA.docx) · [PDF](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/%E5%A2%9E%E9%95%BF%E4%B8%8E%E5%88%86%E9%85%8D/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA/%E5%8E%9F%E5%AF%8C%E6%B0%91%E8%AE%BA.pdf) |
-| 04 宗教与风俗 | 宗教治理 | **原寺观财弊论** | [Markdown](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/%E5%AE%97%E6%95%99%E6%B2%BB%E7%90%86/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA_%E6%B6%A6%E8%89%B2%E7%A8%BF.md) | [Word](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/%E5%AE%97%E6%95%99%E6%B2%BB%E7%90%86/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA_%E6%B6%A6%E8%89%B2%E7%A8%BF.docx) · [PDF](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/%E5%AE%97%E6%95%99%E6%B2%BB%E7%90%86/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA/%E5%8E%9F%E5%AF%BA%E8%A7%82%E8%B4%A2%E5%BC%8A%E8%AE%BA_%E6%B6%A6%E8%89%B2%E7%A8%BF.pdf) |
+| 部类 | 子目 | 篇名 | 正文 | 出版格式 |
+|---|---|---|---|---|
+| 01-史论与人物 | 史事辨 | **河伯娶妇辨** | [Markdown](01-史论与人物/史事辨/河伯娶妇辨/河伯娶妇辨.md) | [DOCX](01-史论与人物/史事辨/河伯娶妇辨/河伯娶妇辨.docx) · [PDF](01-史论与人物/史事辨/河伯娶妇辨/河伯娶妇辨.pdf) |
+| 02-制度与治理 | 法治与程序 | **徽剑案刑罚辨** | [Markdown](02-制度与治理/法治与程序/徽剑案刑罚辨/徽剑案刑罚辨.md) | [DOCX](02-制度与治理/法治与程序/徽剑案刑罚辨/徽剑案刑罚辨.docx) · [PDF](02-制度与治理/法治与程序/徽剑案刑罚辨/徽剑案刑罚辨.pdf) |
+| 02-制度与治理 | 纪检监察 | **论执纪之难** | [Markdown](02-制度与治理/纪检监察/论执纪之难/论执纪之难.md) | [DOCX](02-制度与治理/纪检监察/论执纪之难/论执纪之难.docx) · [PDF](02-制度与治理/纪检监察/论执纪之难/论执纪之难.pdf) |
+| 02-制度与治理 | 社会保障 | **原养老公平论** | [Markdown](02-制度与治理/社会保障/原养老公平论/原养老公平论.md) | [DOCX](02-制度与治理/社会保障/原养老公平论/原养老公平论.docx) · [PDF](02-制度与治理/社会保障/原养老公平论/原养老公平论.pdf) |
+| 03-经济与产业 | 增长与分配 | **原富民论** | [Markdown](03-经济与产业/增长与分配/原富民论/原富民论.md) | [DOCX](03-经济与产业/增长与分配/原富民论/原富民论.docx) · [PDF](03-经济与产业/增长与分配/原富民论/原富民论.pdf) |
+| 04-宗教与风俗 | 宗教治理 | **原寺观财弊论** | [Markdown](04-宗教与风俗/宗教治理/原寺观财弊论/原寺观财弊论_润色稿.md) | [DOCX](04-宗教与风俗/宗教治理/原寺观财弊论/原寺观财弊论_润色稿.docx) · [PDF](04-宗教与风俗/宗教治理/原寺观财弊论/原寺观财弊论_润色稿.pdf) |
 
-## 主题导航
+## 分类导航
 
-- [01-史论与人物](01-%E5%8F%B2%E8%AE%BA%E4%B8%8E%E4%BA%BA%E7%89%A9/README.md)
-- [02-制度与治理](02-%E5%88%B6%E5%BA%A6%E4%B8%8E%E6%B2%BB%E7%90%86/README.md)
-- [03-经济与产业](03-%E7%BB%8F%E6%B5%8E%E4%B8%8E%E4%BA%A7%E4%B8%9A/README.md)
-- [04-宗教与风俗](04-%E5%AE%97%E6%95%99%E4%B8%8E%E9%A3%8E%E4%BF%97/README.md)
-- [05-社会与人情](05-%E7%A4%BE%E4%BC%9A%E4%B8%8E%E4%BA%BA%E6%83%85/README.md)
-- [06-思想与学术](06-%E6%80%9D%E6%83%B3%E4%B8%8E%E5%AD%A6%E6%9C%AF/README.md)
-- [07-文论与写作](07-%E6%96%87%E8%AE%BA%E4%B8%8E%E5%86%99%E4%BD%9C/README.md)
-- [08-杂说与辨析](08-%E6%9D%82%E8%AF%B4%E4%B8%8E%E8%BE%A8%E6%9E%90/README.md)
+- [01-史论与人物](01-史论与人物/README.md)
+- [02-制度与治理](02-制度与治理/README.md)
+- [03-经济与产业](03-经济与产业/README.md)
+- [04-宗教与风俗](04-宗教与风俗/README.md)
+- [05-社会与人情](05-社会与人情/README.md)
+- [06-思想与学术](06-思想与学术/README.md)
+- [07-文论与写作](07-文论与写作/README.md)
+- [08-杂说与辨析](08-杂说与辨析/README.md)
 
-DOCX/PDF 随 Markdown 由 `.github/workflows/publish-articles.yml` 生成；刚发布时请核验二进制文件是否已由工作流入库。
+[文章总库](README.md) · [主题与子目](TAXONOMY.md) · [结构规范](STRUCTURE.md)
