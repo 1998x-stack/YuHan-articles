@@ -1,0 +1,40 @@
+name: Validate Han Yu Agent Skills
+
+on:
+  push:
+    paths:
+      - '.opencode/skills/**'
+      - '.pi/skills/**'
+      - 'prompts/**'
+      - 'docs/**'
+      - 'examples/**'
+      - 'scripts/validate_skills.py'
+      - 'README.md'
+      - 'AGENTS.md'
+      - '.github/workflows/validate-skills.yml'
+  pull_request:
+    paths:
+      - '.opencode/skills/**'
+      - '.pi/skills/**'
+      - 'prompts/**'
+      - 'docs/**'
+      - 'examples/**'
+      - 'scripts/validate_skills.py'
+      - 'README.md'
+      - 'AGENTS.md'
+      - '.github/workflows/validate-skills.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate matching skills and prompt structure
+        run: python3 scripts/validate_skills.py
