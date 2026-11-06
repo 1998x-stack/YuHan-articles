@@ -24,10 +24,11 @@
 - [《徽剑案刑罚辨》](articles/02-制度与治理/法治与程序/徽剑案刑罚辨/README.md)（制度与治理／法治与程序）
 - [完整分类与全部占位子目](articles/TAXONOMY.md)
 - [《原养老公平论》](articles/02-制度与治理/社会保障/原养老公平论/README.md)（制度与治理／社会保障）
-- [主题分类体系（24 子目）](articles/TAXONOMY.md)
+- [主题分类体系（持续扩充）](articles/TAXONOMY.md)
 - [《河伯娶妇辨》](articles/01-史论与人物/史事辨/河伯娶妇辨/README.md)（史论与人物／史事辨）
 - [《论执纪之难》](articles/02-制度与治理/纪检监察/论执纪之难/README.md)（制度与治理／纪检监察）
 - [《原寺观财弊论》](articles/04-宗教与风俗/宗教治理/原寺观财弊论/README.md)（宗教与风俗／宗教治理）
+- [《治时辨》](articles/05-社会与人情/修身与治事/治时辨/README.md)（社会与人情／修身与治事）
 - [文章分类设计与收录流程](articles/STRUCTURE.md)
 - [归档标准与出版流程](docs/article-archive-conventions.md)
 

@@ -4,7 +4,7 @@
 
 一级：固定八大主题 `articles/01-...` 至 `articles/08-...`；二级：具体子目；三级：每一篇文章一个独立目录。不得按 Markdown/Word/PDF 三种格式分别建立散乱的文件夹。
 
-文章一律以中文题名命名，一级分类以两位数字排序。新增题类须在分类 `README.md` 写明收录范围，并更新 `articles/README.md`、`articles/TAXONOMY.md` 与 `articles/CATALOG.md`。一篇仅存一个主分类，其他类用交叉链接；24 个规划子目均以真实 README 文件夹占位。
+文章一律以中文题名命名，一级分类以两位数字排序。新增题类须在分类 `README.md` 写明收录范围，并更新 `articles/README.md`、`articles/TAXONOMY.md` 与 `articles/CATALOG.md`。一篇仅存一个主分类，其他类用交叉链接；子目依实际建档和索引维护，并以真实 README 文件夹占位。
 
 ## 二、单篇构成
 
