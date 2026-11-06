@@ -30,9 +30,22 @@ jobs:
           if [ -n "$(git status --porcelain -- articles)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add articles
+            git add -- articles
             git commit -m "docs: generate PDF and Word article publications [skip ci]"
-            git push
+            # Another article may be committed while this job is building.
+            # Keep generated files, rebase on the latest main, and push safely.
+            for attempt in 1 2 3 4 5 6; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                echo "Published generated article formats."
+                exit 0
+              fi
+              echo "Concurrent update detected (attempt ${attempt}); retrying."
+              sleep 3
+            done
+            echo "Publishing failed after six safe retries." >&2
+            exit 1
           else
             echo "No generated changes."
           fi
