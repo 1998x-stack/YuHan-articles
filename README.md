@@ -23,6 +23,7 @@
 - [作品总目录](articles/CATALOG.md)
 - [《徽剑案刑罚辨》](articles/02-制度与治理/法治与程序/徽剑案刑罚辨/README.md)（制度与治理／法治与程序）
 - [完整分类与全部占位子目](articles/TAXONOMY.md)
+- [《原村落之散》](articles/05-社会与人情/城乡与民生/原村落之散/README.md)（社会与人情／城乡与民生）
 - [《原养老公平论》](articles/02-制度与治理/社会保障/原养老公平论/README.md)（制度与治理／社会保障）
 - [主题分类体系（持续扩充）](articles/TAXONOMY.md)
 - [《河伯娶妇辨》](articles/01-史论与人物/史事辨/河伯娶妇辨/README.md)（史论与人物／史事辨）
