@@ -15,38 +15,17 @@
 
 写作不等于移植儒家立场，也不等于把所有句子改成“夫、盖、然则”。**先求道理成立，继求文章有气。**
 
-## 文章库
+## 文章库与在线阅读
 
-按八大主题、二级子目长期收录，以“主题／子目／单篇”层级组织，一篇文章同时提供 Markdown、Word 和 PDF：
+文章按“**八大主题 → 二级子目 → 独立篇名**”编排。正文由 Markdown 唯一来源维护，Word/PDF 及网站 HTML 从同一稿件自动生成。
 
-- [文章分类与导航](articles/README.md)
-- [作品总目录](articles/CATALOG.md)
-- [《徽剑案刑罚辨》](articles/02-制度与治理/法治与程序/徽剑案刑罚辨/README.md)（制度与治理／法治与程序）
-- [完整分类与全部占位子目](articles/TAXONOMY.md)
-- [《原村落之散》](articles/05-社会与人情/城乡与民生/原村落之散/README.md)（社会与人情／城乡与民生）
-- [《原养老公平论》](articles/02-制度与治理/社会保障/原养老公平论/README.md)（制度与治理／社会保障）
-- [主题分类体系（持续扩充）](articles/TAXONOMY.md)
-- [《河伯娶妇辨》](articles/01-史论与人物/史事辨/河伯娶妇辨/README.md)（史论与人物／史事辨）
-- [《务本辨》](articles/02-制度与治理/组织管理/务本辨/README.md)（制度与治理／组织管理）
-- [《论执纪之难》](articles/02-制度与治理/纪检监察/论执纪之难/README.md)（制度与治理／纪检监察）
-- [《原寺观财弊论》](articles/04-宗教与风俗/宗教治理/原寺观财弊论/README.md)（宗教与风俗／宗教治理）
-- [《治时辨》](articles/05-社会与人情/修身与治事/治时辨/README.md)（社会与人情／修身与治事）
-- [《交际名实辨》](articles/05-社会与人情/人情世故/交际名实辨/README.md)（社会与人情／人情世故）
-- [文章分类设计与收录流程](articles/STRUCTURE.md)
-- [归档标准与出版流程](docs/article-archive-conventions.md)
-
-Markdown 是唯一正文源；Word、PDF 由 `scripts/build_articles.py` 自动生成，不应直接分头编辑。PDF 字体无需预设某一发行版的绝对路径，详见 [字体配置（安装、回退、嵌入与授权）](docs/fonts.md)。
-
-
-## 分类文章库（新增导航）
-
-作品遵循 **八大主题 → 二级子目 → 单篇档案** 的三层结构，分类占位页已有明确收录范围。
-
-- [查看八部分类与子目](articles/README.md)
-- [阅读《原富民论》](articles/03-经济与产业/增长与分配/原富民论/README.md)（增长与分配）
-- [全部正式作品](articles/CATALOG.md)
-- [分类与跨主题归档规则](docs/taxonomy.md)
-- [新增文章手册](docs/adding-an-article.md)
+- [在线阅读站（GitHub Pages）](https://1998x-stack.github.io/YuHan-articles/)
+- [正式文章总目录](articles/CATALOG.md)（由 scripts/build_catalog.py 自动维护）
+- [八部分类与子目导航](articles/README.md)
+- [现行分类准则](articles/TAXONOMY.md)
+- [文章撰写与归档流程](docs/adding-an-article.md)
+- [CSS 设计系统与站点发布说明](docs/website.md)
+- [仓库问题审查与修复记录](docs/repository-audit.md)
 
 ## 在线阅读站（GitHub Pages）
 
@@ -100,7 +79,6 @@ Pi 支持项目中的 .pi/skills/ 目录及显式 Skill 命令。若修改 Skill
 │   ├── CATALOG.md                          # 作品索引
 │   ├── TAXONOMY.md                         # 部类／子目／归档规则
 │   ├── STRUCTURE.md                        # 分类体系、子目占位与收录规范
-│   ├── TAXONOMY.md                         # 主题、子目与归档规则
 │   ├── 01-史论与人物/ ... 08-杂说与辨析/
 │   ├── 02-制度与治理/纪检监察/论执纪之难/  # 三格式作品
 │   ├── 02-制度与治理/社会保障/原养老公平论/ # 三格式作品
@@ -119,6 +97,8 @@ Pi 支持项目中的 .pi/skills/ 目录及显式 Skill 命令。若修改 Skill
 ├── examples/
 │   └── short-rewrite.md
 ├── scripts/
+│   ├── build_site.py                      # Markdown → HTML 静态站
+│   ├── build_catalog.py                   # 自动更新文章目录
 │   └── validate_skills.py
 └── .github/workflows/
     └── validate-skills.yml

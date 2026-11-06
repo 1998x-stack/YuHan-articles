@@ -1,5 +1,7 @@
 # 文章库分类体系与档案结构
 
+> 正式分类唯一依据是 [TAXONOMY.md](TAXONOMY.md) 与各子目实际 README；本文主要描述档案结构，历史旧子目名称仅供说明，不应当作另一份权威分类清单。
+
 ## 分类目的
 
 采用稳定的八大主题与可扩展子目，以议论对象与核心问题决定归属，而不是按原文载体、是否为时事或文件格式混合分组。
@@ -95,7 +97,7 @@ Git 不跟踪空文件夹，因此用有实际说明的 `README.md` 作为子目
 1. 判定主论题，选择唯一部类与子目；若现有子目不适合，先建立新的子目 README，并更新分类导航。
 2. 复制 `_templates/article/` 到文章目录，填写 `article.json` 的 `title`、`manuscript`、`category`、`subcategory`、`date`、`status`、`topics`。
 3. 将完整文章置于 Markdown，事实来源以文末注释列出；标明传闻与推断，避免当作确证史实。
-4. 同步更新单篇 README、子目 README、部类 README 和 `CATALOG.md`；由自动化出版生成 Word/PDF。
+4. 同步更新单篇 README、子目 README、部类 README，并运行 `python3 scripts/build_catalog.py` 生成 `CATALOG.md`；由自动化出版生成 Word/PDF。
 5. 检查生成物文件名、链接、中文字体与参考资料。文章内容改动只改 Markdown，不手工分别更改二进制衍生文件。
 
 ## 出版状态
