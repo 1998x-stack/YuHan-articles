@@ -32,6 +32,17 @@
 
 Markdown 是唯一正文源；Word、PDF 由 `scripts/build_articles.py` 自动生成，不应直接分头编辑。
 
+
+## 分类文章库（新增导航）
+
+作品遵循 **八大主题 → 二级子目 → 单篇档案** 的三层结构，分类占位页已有明确收录范围。
+
+- [查看八部分类与子目](articles/README.md)
+- [阅读《原富民论》](articles/03-经济与产业/增长与分配/原富民论/README.md)（增长与分配）
+- [全部正式作品](articles/CATALOG.md)
+- [分类与跨主题归档规则](docs/taxonomy.md)
+- [新增文章手册](docs/adding-an-article.md)
+
 ## 快速开始
 
 ### 直接使用 Prompt
