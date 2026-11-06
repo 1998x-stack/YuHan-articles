@@ -9,6 +9,8 @@ on:
       - 'docs/**'
       - 'examples/**'
       - 'scripts/validate_skills.py'
+      - 'scripts/validate_repository.py'
+      - 'tests/test_repository.py'
       - 'README.md'
       - 'AGENTS.md'
       - '.github/workflows/validate-skills.yml'
@@ -36,5 +38,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Validate repository metadata and docs
+        run: python3 scripts/validate_repository.py
+      - name: Run repository validator tests
+        run: python3 -m unittest discover -s tests -p 'test_repository.py'
       - name: Validate matching skills and prompt structure
         run: python3 scripts/validate_skills.py

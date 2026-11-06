@@ -68,6 +68,10 @@ def validate(root: Path, base: str, expected: int, min_classics: int = 0) -> lis
             target = root / local.lstrip("/")
             if local.endswith("/") or not target.suffix:
                 target /= "index.html"
+            # An encoded ../ link must not lead outside _site.
+            if not target.resolve().is_relative_to(root):
+                errors.append(f"{page}: local link escapes built site: {href}")
+                continue
             if not target.is_file():
                 errors.append(f"{page}: missing local target: {href}")
             if parsed.fragment and target.resolve() == page.resolve():

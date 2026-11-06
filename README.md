@@ -1,152 +1,155 @@
-# YuHan Articles · 韩愈式古文论辩写作
+# YuHan Articles · 韩愈式古文论辩与原典阅读
 
-以韩愈古文的**论辩方法**重构现代文章，而非把白话逐字替换为文言词汇。
+> **以文明理，以论驭辞。** 以韩愈文章之法重构现代议论，同时保存韩愈本人的古文原作供研究与阅读。
 
-项目提供可直接复制的写作提示词，以及适用于 **OpenCode** 与 **Pi** 的 Agent Skill。核心要求是：**义明、理密、辨深、辞健、法活、气贯、意远**。
+[![Pages](https://github.com/1998x-stack/YuHan-articles/actions/workflows/pages.yml/badge.svg)](https://github.com/1998x-stack/YuHan-articles/actions/workflows/pages.yml)
+[![Skills](https://github.com/1998x-stack/YuHan-articles/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/1998x-stack/YuHan-articles/actions/workflows/validate-skills.yml)
+[![Exports](https://github.com/1998x-stack/YuHan-articles/actions/workflows/publish-articles.yml/badge.svg)](https://github.com/1998x-stack/YuHan-articles/actions/workflows/publish-articles.yml)
 
-## 韩愈古文原典（新增）
+**在线阅读**：[网站首页](https://1998x-stack.github.io/YuHan-articles/) · [现代论说](https://1998x-stack.github.io/YuHan-articles/articles/) · [韩愈五篇原典](https://1998x-stack.github.io/YuHan-articles/classics/)
 
-为研究韩愈文章章法，另建 **[classics/ 韩愈五篇原作](classics/README.md)**，与 `articles/` 的现代仿韩论说文严格分开。五篇为《师说》《马说》（《杂说四》）《进学解》《原道》《祭十二郎文》，逐篇含**完整原文、来源链接、版本说明、独立元数据**。
+本项目兼具 **韩愈式写作 Prompt、OpenCode/Pi Agent Skills、现代古文文章库、原典校阅库和 GitHub Pages 静态阅读网站**。不是“将白话逐字换成文言”的翻译器；先求论证有据、义理明切，再求语言雄健。
 
-- [在线阅读五篇原典](https://1998x-stack.github.io/YuHan-articles/classics/)
-- [五篇选目与版本校阅规范](docs/classic-editions.md)
-- [原典库源文件](classics/README.md)
+## 按需要选择入口
 
-“五篇名作”是覆盖韩愈主要文体的编辑选目，不冒称文学史公认的唯一排名；原作属于唐代公有领域作品，现代句读和个别异文须以逐篇 README 为准。
+| 目的 | 入口 |
+| --- | --- |
+| 阅读已发表文章 | [GitHub Pages](https://1998x-stack.github.io/YuHan-articles/) / [文章总目](articles/CATALOG.md) |
+| 学习韩愈五篇真作 | [原典馆](classics/README.md) / [版本原则](docs/classic-editions.md) |
+| 直接改写现代文章 | [完整版 Prompt](prompts/han-yu-master-prompt.md) / [快速 Prompt](prompts/han-yu-quick-prompt.md) |
+| 在编码助手中调用 | [OpenCode Skill](.opencode/skills/han-yu-argumentation/SKILL.md) / [Pi Skill](.pi/skills/han-yu-argumentation/SKILL.md) |
+| 新建和审校文章 | [新增文章指南](docs/adding-an-article.md) / [编辑标准](docs/editorial-standard.md) |
+| 开发与维护仓库 | [CONTRIBUTING](CONTRIBUTING.md) / [架构](docs/architecture.md) / [运维手册](docs/maintainer-runbook.md) |
+| 了解权限与限制 | [SECURITY](SECURITY.md) / [权利及许可边界](docs/rights-and-licenses.md) |
 
-## 核心理念
+## 两套作品、两种作者归属
 
-- **推原究本**：由现象追问原因，辨明人情、利害与制度条件。
-- **反俗立论**：准确提出通行解释，再检验其前提与结论。
-- **设难破惑**：为异议建立最有力的论据，并在其前提内推演。
-- **辨名核实**：区分名义、行为、结果与利益，拒绝未经证明的动机推定。
-- **据事明理**：保留关键史实、数字、细节与因果过程。
-- **蓄势断案**：以论证累积文势，在篇末形成有根据的判断。
+### 现代古文论说：articles/
 
-写作不等于移植儒家立场，也不等于把所有句子改成“夫、盖、然则”。**先求道理成立，继求文章有气。**
+以**八大主题 → 二级子目 → 单篇目录**编排：史论与人物、制度与治理、经济与产业、宗教与风俗、社会与人情、思想与学术、文论与写作、杂说与辨析。
 
-## 文章库与在线阅读
+每篇以 Markdown 作为**唯一正文权威源**，由同目录 `article.json` 管理题名、主分类、日期、状态和 `topics` 标签；DOCX/PDF 和 HTML 都由源稿生成。仅 `published` 进入正式目录，`draft` 与 `review` 不冒充已刊作品。
 
-文章按“**八大主题 → 二级子目 → 独立篇名**”编排。正文由 Markdown 唯一来源维护，Word/PDF 及网站 HTML 从同一稿件自动生成。
+- [文章总目录](articles/CATALOG.md)：由脚本根据实际的已刊文章生成，**不要手动编辑**。
+- [分类与归档准则](articles/TAXONOMY.md)：唯一主分类，交叉主题用标签。
+- [文章库入口](articles/README.md) 与 [结构说明](articles/STRUCTURE.md)。
 
-- [在线阅读站（GitHub Pages）](https://1998x-stack.github.io/YuHan-articles/)
-- [正式文章总目录](articles/CATALOG.md)
-- [新篇《权门婚议辨》：权门婚议与公权监督](articles/02-制度与治理/纪检监察/权门婚议辨/README.md)（由 scripts/build_catalog.py 自动维护）
-- [八部分类与子目导航](articles/README.md)
-- [现行分类准则](articles/TAXONOMY.md)
-- [文章撰写与归档流程](docs/adding-an-article.md)
-- [CSS 设计系统与站点发布说明](docs/website.md)
-- [仓库问题审查与修复记录](docs/repository-audit.md)
+### 唐代韩愈原作：classics/
 
-## 在线阅读站（GitHub Pages）
+原典与现代仿韩文**严格分库，且不得混淆署名**。首批《师说》《马说》（《杂说四》）《进学解》《原道》《祭十二郎文》，五篇兼顾知名度与文体代表性，**并非所谓公认“前五排名”**。每篇有 `meta.json`、完整原文 Markdown 和逐篇的参校/异文 README；现代标点整理不等于古籍定本。
 
-站点源代码位于 [site/](site/README.md)，从已发表文章的 Markdown 与 article.json 自动生成可直接阅读的 HTML，包含中文排版、八部分类、检索筛选、深浅色模式、Word/PDF 下载及 RSS。部署说明及完整 CSS 设计体系见 [docs/website.md](docs/website.md)。
+## 核心写作方法
 
-**启用入口：** [https://1998x-stack.github.io/YuHan-articles/](https://1998x-stack.github.io/YuHan-articles/)（需先在 GitHub 仓库 Settings → Pages 中将 Source 设为 GitHub Actions，并确认部署成功）。
+| 方法 | 思想作用 |
+| --- | --- |
+| 推原究本 | 由表象探求人情、利害、制度和因果 |
+| 反俗立论 | 提出通说，再检验其前提与矛盾 |
+| 设难诘问 | 先公平构建强异议，再逐层检验 |
+| 辨名核实 | 分清公开宣称、实际行为、效果和利益 |
+| 据事明理 | 保留人物、史事、数字、出处及不确定性 |
+| 正反互证 | 以同一标准检验正反两种情况 |
+| 蓄势断案 | 由疑入辨，结论必须由事实与推论支持 |
 
-本地构建：
+追求**义明、理密、辨深、辞健、法活、气贯、意远**，而非单纯堆砌“夫、盖、然则”。原文无证据者不补造；人物获利不等于动机已获证实；不强行移植古人宗教或政治主张。详见 [方法与证据](docs/method-and-evidence.md) 和 [质量量表](docs/quality-rubric.md)。
 
-~~~bash
-python3 -m pip install -r requirements-site.txt
-python3 scripts/build_site.py --site-url http://localhost:8000/
-python3 scripts/validate_site.py --base-path / --min-articles 1
-python3 -m http.server 8000 --directory _site
-~~~
+## 快速使用 Prompt 与 Skills
 
-## 快速开始
+直接将自己的文章粘贴到 [完整版写作 Prompt](prompts/han-yu-master-prompt.md) 的【待改写原文】位置。默认只需返回篇名和完整古文正文；如需校勘、评述、事实核查或 PDF/DOCX，请明确提出。
 
-### 直接使用 Prompt
-
-打开 [完整版写作 Prompt](prompts/han-yu-master-prompt.md)，将末尾的 **【待改写原文】** 换成实际文章，并按需调整文体、论证密度与篇幅。
-
-如需快速调用，可用 [精简版 Prompt](prompts/han-yu-quick-prompt.md)。
-
-### 在 OpenCode 中使用
-
-Skill 位于 **.opencode/skills/han-yu-argumentation/SKILL.md**。在本仓库中启动 OpenCode，输入：
+两端 Skill 路径：
 
 ~~~text
-请使用 han-yu-argumentation skill，把下面的现代评论重构为韩愈式古文论说文。
-保留全部核心证据与立场，不得虚构史实；只输出篇名与正文。
-
-【在此粘贴原文】
+.opencode/skills/han-yu-argumentation/SKILL.md
+.pi/skills/han-yu-argumentation/SKILL.md
 ~~~
 
-### 在 Pi 中使用
+在相应工具的项目会话中请求使用 `han-yu-argumentation`。Pi 的部分版本可使用 `/skill:han-yu-argumentation`，具体以已安装版本的 Skill 命令和目录约定为准。两份 Skill 内容应保持**字节级一致**。
 
-Skill 位于 **.pi/skills/han-yu-argumentation/SKILL.md**。在本仓库启动 Pi，可使用：
-
-~~~text
-/skill:han-yu-argumentation 将以下文章改写为韩愈式古文论说文，保持事实与论旨不变：【原文】
-~~~
-
-Pi 支持项目中的 .pi/skills/ 目录及显式 Skill 命令。若修改 Skill 后当前会话未更新，可执行 Pi 的 /reload。
-
-## 目录
+## 目录与系统组成
 
 ~~~text
 .
-├── articles/                               # 八大主题文章库
-│   ├── CATALOG.md                          # 作品索引
-│   ├── TAXONOMY.md                         # 部类／子目／归档规则
-│   ├── STRUCTURE.md                        # 分类体系、子目占位与收录规范
-│   ├── 01-史论与人物/ ... 08-杂说与辨析/
-│   ├── 02-制度与治理/纪检监察/论执纪之难/  # 三格式作品
-│   ├── 02-制度与治理/社会保障/原养老公平论/ # 三格式作品
-│   ├── 04-宗教与风俗/宗教治理/原寺观财弊论/ # 三格式作品
-│   └── _templates/                         # 单篇目录模板
-├── AGENTS.md
-├── README.md
-├── prompts/
-│   ├── han-yu-master-prompt.md
-│   └── han-yu-quick-prompt.md
-├── .opencode/skills/han-yu-argumentation/SKILL.md
-├── .pi/skills/han-yu-argumentation/SKILL.md
-├── docs/
-│   ├── method-and-evidence.md
-│   └── quality-rubric.md
-├── examples/
-│   └── short-rewrite.md
+├── README.md                       # 面向读者、贡献者的总入口
+├── AGENTS.md                       # AI Agent 任务与维护规范
+├── CONTRIBUTING.md                 # 贡献与变更指引
+├── SECURITY.md                     # 安全报告边界
+├── articles/                       # 现代文章，八大部类
+│   ├── CATALOG.md                  # 自动生成的总目
+│   ├── TAXONOMY.md                 # 归类权威依据
+│   └── <分类>/<子目>/<篇名>/
+│       ├── article.json
+│       ├── README.md
+│       └── <篇名>.md / .docx / .pdf
+├── classics/                       # 韩愈五篇原典
+│   └── <slug>/meta.json + 原典.md + README.md
+├── prompts/                        # 完整与精简 Prompt
+├── .opencode/skills/               # OpenCode Agent Skill
+├── .pi/skills/                     # Pi Agent Skill
+├── site/
+│   ├── templates/                  # Jinja2 网页模板
+│   └── static/assets/              # CSS、JS 与 SVG
 ├── scripts/
-│   ├── build_site.py                      # Markdown → HTML 静态站
-│   ├── build_catalog.py                   # 自动更新文章目录
-│   └── validate_skills.py
-└── .github/workflows/
-    └── validate-skills.yml
+│   ├── validate_repository.py      # 目录、元数据、文档链接校验
+│   ├── validate_skills.py          # 两端 Skill 同步校验
+│   ├── build_catalog.py            # 文章总目
+│   ├── build_articles.py           # Markdown → DOCX / PDF
+│   ├── build_site.py               # Markdown → HTML
+│   └── validate_site.py            # 网站输出与站内链接校验
+├── tests/                          # unittest
+└── .github/workflows/             # 自动出版、站点部署、结构校验
 ~~~
 
-## 推荐工作流
+## 本地开发与网站预览
 
-1. **审原文**：提取中心论断与可核实事实，区分引述、推测和假设。
-2. **定论势**：确定最大的矛盾和反方最强解释，安排由疑到辨、由辨到断的推进次序。
-3. **重写**：以唐代散体古文为本，长短错综；通过条件、比较、反诘推动逻辑。
-4. **复核**：逐一核对人物、数字、引文和因果陈述，删除空论与不承担论证功能的华辞。
-5. **交付**：默认仅输出古雅篇名与完整正文；原文未提供时先索取原文。
-
-更多详见 [方法与证据规范](docs/method-and-evidence.md)、[七维质量评估](docs/quality-rubric.md)及[短例](examples/short-rewrite.md)。
-
-## 使用边界
-
-- **不伪造**韩愈原话、古籍引文、史实、数字或人物心理。
-- **不偷换**作者的核心立场；现代科学、制度概念应解释其含义后再文言化。
-- **不因获利便断定虚伪**；对意图与因果须有证据。
-- 事实存疑时，宜保留来源归属或审慎语气；不能把推测写成“史载”。
-- 以韩愈为风格与论证方法的参照，生成的文章**不是韩愈真作**。
-
-## 维护与校验
-
-两端 Skill 应保持一致，避免行为漂移。修改一处 Skill 时同步修改另一处，然后在仓库根目录运行：
+建议 Python **3.12**。在仓库根目录：
 
 ~~~bash
+python3 -m venv .venv
+source .venv/bin/activate           # PowerShell: .venv\Scripts\Activate.ps1
+python3 -m pip install -r requirements-site.txt
+python3 -m pip install python-docx reportlab
+
+# 检查结构、原典、Prompt 与已刊总目
+python3 scripts/validate_repository.py
 python3 scripts/validate_skills.py
+python3 -m unittest discover -s tests -p 'test_repository.py'
+python3 -m unittest discover -s tests -p 'test_classics.py'
+python3 -m unittest discover -s tests -p 'test_site.py'
+python3 -m unittest discover -s tests -p 'test_fonts.py'
+python3 scripts/build_catalog.py --check
+
+# 生成 Word/PDF，验证真实导出
+python3 scripts/build_articles.py
+python3 scripts/validate_repository.py --require-exports
+
+# 本地 HTTP 预览：覆盖线上 Pages 项目子路径
+python3 scripts/build_site.py --site-url http://localhost:8000/
+python3 scripts/validate_site.py --base-path / --min-articles 1 --min-classics 5
+python3 -m http.server 8000 --directory _site
 ~~~
 
-持续集成也会检查 Skill frontmatter、路径、同步状态与 Prompt 文档是否存在。编辑规则见 [AGENTS.md](AGENTS.md)。
+打开 http://localhost:8000/ 。`_site/` 属于忽略提交的生成目录，切勿当作正文权威源。PDF 字体不足时可能回退到非嵌入 CID；正式分发见 [字体说明](docs/fonts.md)。
 
-## 兼容性参考
+## 发布和 CI
 
-- [OpenCode Agent Skills 文档](https://docs.opencode.ai/docs/skills/)
-- [Pi Skills 文档](https://pi.dev/docs/latest/skills)
-- [Agent Skills 规范](https://agentskills.io/specification)
+| 工作流 | 目的 |
+| --- | --- |
+| [Validate Han Yu Agent Skills](https://github.com/1998x-stack/YuHan-articles/actions/workflows/validate-skills.yml) | 校验 Prompt、Skill 一致性、目录和文档链接 |
+| [Publish article formats](https://github.com/1998x-stack/YuHan-articles/actions/workflows/publish-articles.yml) | 从最新已刊 Markdown 生成 PDF/DOCX 与文章总目 |
+| [Build and deploy reading site](https://github.com/1998x-stack/YuHan-articles/actions/workflows/pages.yml) | 测试、构建静态中文阅读站并部署 Pages |
 
-本仓库内容用于文体学习与文字创作，历史与时事事实仍需独立核验。
+网页支持文章全文排印、分类筛选、原典馆、脚注、RSS、站点地图、深浅色和手机阅读，使用本机字体，不依赖在线数据库。CSS 设计规范见 [docs/website.md](docs/website.md)。
+
+**CI 通过仅证明自动化检查成功，不等于所有史料、社会数字或外部引用已做独立事实核查。** Pages 上线需以 deploy 成功及真实页面可访问为准；参见 [维护手册](docs/maintainer-runbook.md)。
+
+## 文档体系与权利边界
+
+- [AGENTS.md](AGENTS.md)：AI Agent 工作规约与验证矩阵。
+- [CONTRIBUTING.md](CONTRIBUTING.md)：贡献与人工审稿流程。
+- [docs/architecture.md](docs/architecture.md)：项目模块、数据流与安全。
+- [docs/editorial-standard.md](docs/editorial-standard.md)：史料、因果、文言、版本和质量门槛。
+- [docs/maintainer-runbook.md](docs/maintainer-runbook.md)：构建、部署、恢复与排障。
+- [docs/repository-audit.md](docs/repository-audit.md)：查出的问题、修复记录和剩余风险。
+- [docs/rights-and-licenses.md](docs/rights-and-licenses.md)：公有领域原典、现代稿件、字体和许可证的区别。
+
+公开仓库不当然表示所有文件均可无限制再分发。如果仓库尚无明确的根级 `LICENSE`，不能将其默认视为采用某种开源许可证。史料核查和版权归属须独立进行。

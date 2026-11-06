@@ -4,7 +4,7 @@
 
 网站地址（Pages 启用后）：**https://1998x-stack.github.io/YuHan-articles/**
 
-网站为完全静态的中文论辩阅读站：无需服务器、数据库、JavaScript 框架、外部字体服务或 CDN。内容始终来自 articles/ 中的 article.json 与同目录 Markdown 原稿；网页是**构建产物**，不能另外手工维护文章副本。
+网站为完全静态的中文论辩阅读站：无需服务器、数据库、JavaScript 框架、外部字体服务或 CDN。现代文章来自 articles/ 的 article.json 和 Markdown；韩愈原典来自 classics/ 的 meta.json 与原文 Markdown；网页是**构建产物**，不能另外手工维护文章副本。
 
 ## 信息架构
 
@@ -18,11 +18,11 @@
 | /YuHan-articles/feed.xml | RSS 2.0 订阅 |
 | /YuHan-articles/sitemap.xml | 搜索引擎可识别的站点地图 |
 
-网页路径以百分号编码处理中文目录名，构建器统一添加 Pages 项目子路径，避免页面在多级目录下出现相对链接错误。只有 article.json 中 status 为 published 且 Markdown 确实存在的文章才会发布。未完成的占位目录不会变成空文章页面。
+网页路径以百分号编码处理中文目录名，构建器统一添加 Pages 项目子路径，避免页面在多级目录下出现相对链接错误。只有 article.json 中 status 为 published 且 Markdown 确实存在的现代文章才会发布；韩愈原典则按 classics/meta.json 的 status=published 分库发布。未完成的占位目录不会变成空文章页面。
 
 ## CSS 设计系统
 
-CSS 在 site/static/assets/style.css，分为九层：设计令牌、语义与重置、站点导航、首页、目录与分类、长文阅读、Markdown 排印、专题与错误页、响应式与打印。
+CSS 在 site/static/assets/style.css，初始九层外另增原典馆层，共分十层：设计令牌、语义与重置、站点导航、首页、目录与分类、长文阅读、Markdown 排印、专题与错误页、响应式与打印。
 
 ### 色彩
 
@@ -76,7 +76,7 @@ python3 -m pip install -r requirements-site.txt
 python3 -m pip install python-docx reportlab
 python3 scripts/build_articles.py            # 可选：重建可下载排印版
 python3 scripts/build_site.py
-python3 scripts/validate_site.py --min-articles 1
+python3 scripts/validate_site.py --min-articles 1 --min-classics 5
 python3 -m http.server 8000 --directory _site
 ~~~
 
@@ -84,7 +84,7 @@ python3 -m http.server 8000 --directory _site
 
 ~~~bash
 python3 scripts/build_site.py --site-url http://localhost:8000/
-python3 scripts/validate_site.py --base-path / --min-articles 1
+python3 scripts/validate_site.py --base-path / --min-articles 1 --min-classics 5
 python3 -m http.server 8000 --directory _site
 ~~~
 
@@ -112,3 +112,10 @@ python3 -m http.server 8000 --directory _site
 原典馆新增 `/YuHan-articles/classics/` 与五篇 `/classics/<slug>/` 阅读页；网页从 `classics/` 的 `meta.json` 与完整 Markdown 原文自动生成，不需要复制粘贴到 HTML 模板。原典馆不改变 `articles/` 的现代改写稿数量。主导航、首页选读及网站地图均包括这五篇。编辑规范见 [古文版本校阅](classic-editions.md)。
 
 Pages 发布时要求 `python3 -m unittest discover -s tests -p 'test_classics.py'` 和 `python3 scripts/validate_site.py --min-classics 5` 同时成功。
+
+## 当前架构与维护约定
+
+- **主数据源**：现代作品由 articles/ 生成，韩愈原作由 classics/ 生成，网页不是第三份待人工编辑的正文。
+- **生成入口**：执行 `python3 scripts/validate_repository.py` 后再运行 `python3 scripts/build_site.py`，避免在元数据冲突时发表错误作者或路径。
+- **构建输出保护**：脚本只允许清理实际仓库根目录下的 `_site/`，禁止用软链接或任意输出目录绕过限制；临时预览请使用标准 _site。
+- **测试与文档**：[架构说明](architecture.md) · [运行维护](maintainer-runbook.md) · [编辑规范](editorial-standard.md) · [权利政策](rights-and-licenses.md)。

@@ -248,9 +248,13 @@ def build(root: Path, output: Path, site_url: str, repo: str) -> dict:
             (classic["source_path"].parent / "README.md").relative_to(root).as_posix()
         )
 
-    output = output.resolve()
-    if output.name != "_site" or output == root.resolve() or output.is_symlink():
-        raise ValueError("Refusing to delete unsafe output; use a folder named _site")
+    # Do not follow a symlink before the safety check: calling resolve()
+    # first makes the old is_symlink() guard ineffective.
+    root = root.resolve()
+    requested = output.expanduser().absolute()
+    if requested.is_symlink() or requested != root / "_site":
+        raise ValueError("Refusing to delete unsafe output; use <repo-root>/_site")
+    output = requested
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)

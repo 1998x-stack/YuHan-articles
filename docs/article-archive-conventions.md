@@ -1,53 +1,78 @@
-# 文章库结构与出版规范
+# 文章归档与出版规范
 
-## 一、目录分类
+## 1. 文档身份和权威源
 
-一级：固定八大主题 `articles/01-...` 至 `articles/08-...`；二级：具体子目；三级：每一篇文章一个独立目录。不得按 Markdown/Word/PDF 三种格式分别建立散乱的文件夹。
+- 现代文章目录位于 `articles/`，韩愈本人原作独立存于 `classics/`。
+- 分类规范以 [TAXONOMY](../articles/TAXONOMY.md) 为准；本文件只规定**单篇档案、状态、格式与出版流程**。
+- 现代文章唯一正文为同目录 Markdown；Word、PDF 和 HTML 从 Markdown 生成。
+- 已刊总目 `articles/CATALOG.md` 由 `scripts/build_catalog.py` 自动生成。禁止手工增删总目条目。
 
-文章一律以中文题名命名，一级分类以两位数字排序。新增题类须在分类 `README.md` 写明收录范围，并更新 `articles/README.md`、`articles/TAXONOMY.md` 与 `articles/CATALOG.md`。一篇仅存一个主分类，其他类用交叉链接；子目依实际建档和索引维护，并以真实 README 文件夹占位。
+## 2. 一文一档
 
-## 二、单篇构成
-
-```text
+~~~text
 articles/02-制度与治理/纪检监察/论执纪之难/
-├── README.md         # 摘要、事实边界与阅读链接
-├── article.json      # 标题、分类、日期、状态、标签
-├── 论执纪之难.md      # 唯一正文来源
-├── 论执纪之难.docx    # 自动生成
-└── 论执纪之难.pdf     # 自动生成
-```
+├── README.md                    # 篇旨、来源说明与阅读入口
+├── article.json                 # 元数据，非正文
+├── 论执纪之难.md                # 唯一正文源
+├── 论执纪之难.docx              # 已发表时的 Word 生成件
+└── 论执纪之难.pdf               # 已发表时的 PDF 生成件
+~~~
 
-`article.json` 中 `manuscript` 必须指向同目录 Markdown。所有正文更新须改 Markdown，再运行 `python scripts/build_articles.py`，不可直接编辑衍生文档后不回填 Markdown。
+一级目录采用两位数字及中文主题，二级按真实问题域分类，三级单篇中文篇名。旧目录若已有公开 URL 不得仅为“统一命名”无计划迁移。重复主题只选一个主分类，其他关键词写入 topics。
 
-## 三、写作与史料边界
+## 3. article.json 契约
 
-保留原文所可证的关键事实与推断边界；人物转述应明示转述属性，不得把推测写成已经证实的史事。古文论说须有明确论旨及其论据，不能只堆叠虚词。引用需核对出处，现代法律与数据应以可查材料为据。
+~~~json
+{
+  "title": "论执纪之难",
+  "manuscript": "论执纪之难.md",
+  "category": "02-制度与治理",
+  "subcategory": "纪检监察",
+  "date": "2026-11-06",
+  "status": "published",
+  "topics": ["纪检监察", "制度治理"]
+}
+~~~
 
-## 四、出版与维护
+路径、category/subcategory、标题与 Markdown 第一行的 H1 必须一致。`manuscript` 只接受本目录 UTF-8 `.md` 文件名，不可使用目录穿越或软链接到仓库外；`topics` 是字符串数组，`date` 是 YYYY-MM-DD。
 
-先执行 `python3 -m pip install python-docx reportlab`。PDF 优先嵌入可用的中文 TrueType 字体；如系统没有兼容字体，脚本会回退至 ReportLab 内置 `STSong-Light`（不嵌入字体，部分阅读器可能需要字体替代）。正式出版建议按照 [字体配置与授权说明](fonts.md) 安装系统字体或设置 `YUHAN_CJK_FONT`，然后运行 `python3 scripts/build_articles.py`。
+状态：`draft` 草稿；`review` 审校；`published` 已发表；`archived` 归档。**当前所有公开生成器统一选择 published**，不因 `article.json` 文件存在就认定作品可发表。
 
-GitHub Actions 会在正文、生成脚本或工作流变化后生成 DOCX/PDF 并提交。发布后检查 GitHub 的文件列表，确保同名的 `.md/.docx/.pdf` 均存在。二进制文件为自动生成件，排版改动应修改生成脚本。
+## 4. 史料和作品边界
 
-## 五、预设子目与检索
+古文论证仍必须保存原文关键事实与论旨。史料引用、访谈转述、统计数字、作者推测及假设案例须区分，不能用雄健辞气取代校证。现代版权材料需有合理使用依据或授权，不能将他人全文偷录后改写成文言即声称自创。
 
-八大部类下的预留子目须创建有实际用途的 `README.md`：写明收录范围、返回导航与当前状态，不使用空文件或虚构篇名作占位。新增子目须维护该部类的 README、`articles/README.md`、`articles/STRUCTURE.md`。单篇只归档于一个最相关子目；其它目录引用其 canonical 路径即可。
+原典不遵守现代文章的分类与同名 DOCX/PDF 契约：其作者、底本、异文独立记录，详见 [古文原典](classic-editions.md)。
 
-## 六、参考资料与版本
+## 5. 排印和字体
 
-Markdown 正文可采用 `[^1]` 方式标识来源，并在文末以 `[^1]:` 逐条给出可访问链接。出版脚本应将标号转换为易读的脚注标记，并将来源收于末尾；不可把 Markdown 标记本身误排为正文。
+安装 `python-docx` 与 `reportlab`，执行：
 
-原始附件与仓库通过 Markdown 重新生成的 Word/PDF 可能排版不完全一致；正文和参考资料以 Markdown 为准。大型修订可另建版本目录或在 Git 历史中保留，不应误称二进制出版物为原附件的逐字节副本。
+~~~bash
+python3 scripts/validate_repository.py
+python3 scripts/build_articles.py
+python3 scripts/validate_repository.py --require-exports
+~~~
 
-## 五、分类体系与占位
+Word 使用可配置中文字体名称；PDF 优先嵌入兼容的 TrueType；若不可用则采用非嵌入的 STSong-Light CID 回退。**字体回退不保证跨平台排印一致**，正式出版需人工打开检查。详见 [fonts.md](fonts.md)。
 
-详细部类、子目及归类标准以 [文章分类体系](../articles/TAXONOMY.md) 为准。所有预留子目使用载明收录范围的 README 作为 Git 可追踪占位，新增文章须同步更新导航及总目录。
+Markdown 文末可用 `[^1]` 脚注与 `[^1]:` 来源记录。网页脚注与排印脚注处理方式不同，生成后需检查标记是否仍可读；若确有歧义，优先回到源稿统一规范，再改生成器。
 
+## 6. 总目、网站与验收
 
-## 五、分类占位与出版验收
+~~~bash
+python3 scripts/build_catalog.py
+python3 scripts/build_catalog.py --check
+python3 scripts/build_site.py
+python3 scripts/validate_site.py --base-path /YuHan-articles/ --min-classics 5
+~~~
 
-各子目以 `README.md` 记载范围和状态；无真实作品时不创建虚构稿件或空白 `article.json`。跨主题内容仅以 `topics` 标注，不复制出多个主档。
+Pages 使用 `/YuHan-articles/` 项目子路径，本地预览应将构站参数 `--site-url` 与校验器 `--base-path` 同步设置为本地根路径。生成结果位于仓库 `_site/`，不作为正文源提交。
 
-[分类及归类示例](taxonomy.md) · [单篇归档步骤](adding-an-article.md)
+GitHub Actions 可能在同时出版多篇文章时发生并发变化；出版器须从最新 main 重新构建二进制，不能通过 rebasing PDF/DOCX 合并差异。
 
-发布时检查 `篇名.md`、`篇名.docx`、`篇名.pdf` 是否在 GitHub 实际存在，不以目录链接代替上传成功的核验。
+## 7. 审稿与链接检查
+
+结构校验只能验证文件、元数据与站内链接，不代表古文史实已完成独立考据。发表前至少人工确认：题名、主张、原典署名、时间口径、引用、Word/PDF 中文显示、移动端 HTML 和下载页面可达。旧 URL 需要迁移时应先评估兼容方式。
+
+具体操作：[新增文章](adding-an-article.md) · [编辑标准](editorial-standard.md) · [仓库运维](maintainer-runbook.md)。

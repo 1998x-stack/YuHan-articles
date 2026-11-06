@@ -189,12 +189,22 @@ def main():
             continue
         folder = config.parent
         meta = json.loads(config.read_text(encoding='utf-8'))
-        source = folder / meta['manuscript']
-        if not source.exists():
-            raise FileNotFoundError(source)
+        # Drafts and reviews are not publishable outputs; the catalogue and
+        # GitHub Pages use the same published-only eligibility rule.
+        if meta.get('status') != 'published':
+            continue
+        name = meta.get('manuscript')
+        if (not isinstance(name, str) or not name.endswith('.md') or
+                Path(name).name != name or '/' in name or '\\' in name):
+            raise ValueError(f'Unsafe article manuscript name: {config}')
+        source = folder / name
+        if source.is_symlink() or not source.is_file():
+            raise FileNotFoundError(f'Missing or symlinked manuscript: {source}')
+        if source.resolve().parent != folder.resolve():
+            raise ValueError(f'Manuscript path escapes article directory: {config}')
         title, sections = manuscript(source.read_text(encoding='utf-8'))
-        if not title or not sections:
-            raise ValueError(f'Empty article: {source}')
+        if title != meta.get('title') or not sections:
+            raise ValueError(f'Invalid title or empty published article: {source}')
         target_docx = source.with_suffix('.docx')
         target_pdf = source.with_suffix('.pdf')
         build_docx(title, sections, target_docx)

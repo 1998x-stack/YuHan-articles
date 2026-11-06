@@ -35,3 +35,38 @@ python3 scripts/validate_skills.py
 ~~~
 
 **部署验证：** [GitHub Pages 工作流](https://github.com/1998x-stack/YuHan-articles/actions/workflows/pages.yml) 与 [文章出版工作流](https://github.com/1998x-stack/YuHan-articles/actions/workflows/publish-articles.yml)。若未来任一自动化失败，按对应运行日志定位，不把曾经通过等同于永久成功。
+
+## 2026-11-06 后续系统性复审与结构加固
+
+旧表中“10 篇”是**先前某次检查的快照**，不应当作始终准确的仓库总数。当前真实条目以 [CATALOG](../articles/CATALOG.md) 自动生成的数量为准。
+
+| 审查项 | 具体问题 | 本次修复 | 仍需人工确认 |
+| --- | --- | --- | --- |
+| 文档治理 | 根 README 的旧目录树遗漏原典与网站；AGENTS 对系统形态描述过时 | 重写根文档，新增架构、运维、贡献、编辑、权利及安全指南 | GitHub 上文档链接和实际工作流 |
+| 分类漂移 | 历史近义子目共存，手动作品列表可能与自动总目不一致 | 文章库 README 不再复制文章名单；TAXONOMY、STRUCTURE 和新文章说明重新分工 | 合并旧路径前检查公开 URL |
+| 资料状态 | Word/PDF 构建器不区分 draft/review/published | 出版器只处理 published；增加标题和正文名一致性检查 | 既有成品的文学及史料质量 |
+| 文件路径 | article.json.manuscript 原来允许未经限制的父路径拼接 | 新增纯文件名和库内路径校验，拒绝符号链接及路径穿越 | 不可信贡献的其他安全边界 |
+| 站点安全 | resolve 后判断 symlink 导致原始软链接保护无效 | 在清理前检查原始目标，只允许仓库下的 _site；验证链接不逃出构建目录 | 人工审查权限与外部链接 |
+| 元数据与文档 | 缺统一的作者、分类、状态、内部链接检查 | 新增 validate_repository.py、单测，并接入 CI | 内容事实、在线外链仍须人工检查 |
+| 原典说明 | 《马说》等存在标题通称与原题差异 | 校验兼容篇名的题式差异；现代文章仍严格匹配 H1 | 逐字异文校勘仍须人工完成 |
+
+### 留存风险与长期计划
+
+1. 自动化不能独立核实所有法律、经济、史料数字与外部引用；建议建立逐篇证据复查记录。
+2. DOCX/PDF 的 Git 历史膨胀和二进制重复生成仍会占用仓库空间；未来改为 Release/Pages 附件需先设计 URL 兼容。
+3. 近义子目合并应先核查历史外链，不应追求命名整齐而破坏地址。
+4. 中文字体在不同系统下外观不完全一致；PDF CID 回退不嵌字，需人工检查排印。
+5. 如果仓库没有权利人确认的 LICENSE，不应把现代文章与代码默认认为自由再分发；详见 [版权与许可](rights-and-licenses.md)。
+
+### 建议验收
+
+~~~bash
+python3 scripts/validate_repository.py
+python3 scripts/validate_skills.py
+python3 -m unittest discover -s tests -p 'test_repository.py'
+python3 scripts/build_catalog.py --check
+python3 scripts/build_site.py
+python3 scripts/validate_site.py --base-path /YuHan-articles/ --min-classics 5
+~~~
+
+以上“修复”最终以实际 GitHub Actions 检查对应提交为准；未执行的人工事实审查不可宣称完成。

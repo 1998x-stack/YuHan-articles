@@ -7,6 +7,7 @@ on:
       - 'articles/**/article.json'
       - 'scripts/build_articles.py'
       - 'scripts/build_catalog.py'
+      - 'scripts/validate_repository.py'
       - '.github/workflows/publish-articles.yml'
   workflow_dispatch:
 permissions:
@@ -19,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Validate source metadata and documentation links
+        run: python3 scripts/validate_repository.py
       - name: Install Chinese fonts and publishing libraries
         run: |
           sudo apt-get update -qq
@@ -38,6 +41,7 @@ jobs:
             git reset --hard origin/main
             python3 scripts/build_articles.py
             python3 scripts/build_catalog.py
+            python3 scripts/validate_repository.py --require-exports
             git add articles
             if git diff --cached --quiet; then
               echo "All publications and the catalog are current."
