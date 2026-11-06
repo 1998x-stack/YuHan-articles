@@ -30,7 +30,8 @@
 文章按“**八大主题 → 二级子目 → 独立篇名**”编排。正文由 Markdown 唯一来源维护，Word/PDF 及网站 HTML 从同一稿件自动生成。
 
 - [在线阅读站（GitHub Pages）](https://1998x-stack.github.io/YuHan-articles/)
-- [正式文章总目录](articles/CATALOG.md)（由 scripts/build_catalog.py 自动维护）
+- [正式文章总目录](articles/CATALOG.md)
+- [新篇《权门婚议辨》：权门婚议与公权监督](articles/02-制度与治理/纪检监察/权门婚议辨/README.md)（由 scripts/build_catalog.py 自动维护）
 - [八部分类与子目导航](articles/README.md)
 - [现行分类准则](articles/TAXONOMY.md)
 - [文章撰写与归档流程](docs/adding-an-article.md)
