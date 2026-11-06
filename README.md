@@ -30,6 +30,7 @@
 - [《论执纪之难》](articles/02-制度与治理/纪检监察/论执纪之难/README.md)（制度与治理／纪检监察）
 - [《原寺观财弊论》](articles/04-宗教与风俗/宗教治理/原寺观财弊论/README.md)（宗教与风俗／宗教治理）
 - [《治时辨》](articles/05-社会与人情/修身与治事/治时辨/README.md)（社会与人情／修身与治事）
+- [《交际名实辨》](articles/05-社会与人情/人情世故/交际名实辨/README.md)（社会与人情／人情世故）
 - [文章分类设计与收录流程](articles/STRUCTURE.md)
 - [归档标准与出版流程](docs/article-archive-conventions.md)
 
