@@ -15,6 +15,17 @@
 
 写作不等于移植儒家立场，也不等于把所有句子改成“夫、盖、然则”。**先求道理成立，继求文章有气。**
 
+## 文章库
+
+按八大主题长期收录，以“主题／子目／单篇”层级组织，一篇文章同时提供 Markdown、Word 和 PDF：
+
+- [文章分类与导航](articles/README.md)
+- [作品总目录](articles/CATALOG.md)
+- [《论执纪之难》](articles/02-制度与治理/纪检监察/论执纪之难/README.md)（制度与治理／纪检监察）
+- [归档标准与出版流程](docs/article-archive-conventions.md)
+
+Markdown 是唯一正文源；Word、PDF 由 `scripts/build_articles.py` 自动生成，不应直接分头编辑。
+
 ## 快速开始
 
 ### 直接使用 Prompt
@@ -48,6 +59,11 @@ Pi 支持项目中的 .pi/skills/ 目录及显式 Skill 命令。若修改 Skill
 
 ~~~text
 .
+├── articles/                               # 八大主题文章库
+│   ├── CATALOG.md                          # 作品索引
+│   ├── 01-史论与人物/ ... 08-杂说与辨析/
+│   ├── 02-制度与治理/纪检监察/论执纪之难/  # 三格式作品
+│   └── _templates/                         # 单篇目录模板
 ├── AGENTS.md
 ├── README.md
 ├── prompts/

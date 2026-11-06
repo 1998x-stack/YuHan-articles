@@ -1,0 +1,38 @@
+name: Publish article formats
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'articles/**/*.md'
+      - 'articles/**/article.json'
+      - 'scripts/build_articles.py'
+      - '.github/workflows/publish-articles.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-articles-main
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Chinese fonts and publishing libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-arphic-gbsn00lp
+          python3 -m pip install --disable-pip-version-check python-docx reportlab
+      - name: Build Word and PDF from canonical Markdown
+        run: python3 scripts/build_articles.py
+      - name: Commit generated publications
+        run: |
+          if [ -n "$(git status --porcelain -- articles)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add articles
+            git commit -m "docs: generate PDF and Word article publications [skip ci]"
+            git push
+          else
+            echo "No generated changes."
+          fi

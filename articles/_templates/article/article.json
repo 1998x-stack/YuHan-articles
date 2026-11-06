@@ -1,0 +1,9 @@
+{
+  "title": "待定篇名",
+  "manuscript": "篇名.md",
+  "category": "待定大类",
+  "subcategory": "待定子目",
+  "date": "YYYY-MM-DD",
+  "status": "draft",
+  "topics": []
+}

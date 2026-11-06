@@ -59,3 +59,10 @@ python3 scripts/validate_skills.py
 - 将“名实辨析”退化为无证的动机指控；
 - 让 OpenCode 与 Pi Skill 流程出现分歧；
 - 在无实际检查的情况下宣称文章经过核实或校验通过。
+
+## 文章归档与出版
+
+- 文章按 `articles/01-...` 至 `articles/08-...` 分类，二级按子目，三级为独立篇名目录；空分类以 README 保留。
+- 每篇须有 `README.md`、`article.json`、Markdown 正文；DOCX/PDF 按正文通过 `python scripts/build_articles.py` 统一生成。
+- 编辑正文或新增文章须更新 `articles/CATALOG.md` 及分类导航；保持文件名与 `article.json.manuscript` 一致。
+- 不要直接分别修改 Word/PDF 内容，以免三版互不相符。详见 `docs/article-archive-conventions.md`。
