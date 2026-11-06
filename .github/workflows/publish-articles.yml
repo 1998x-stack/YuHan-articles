@@ -6,13 +6,14 @@ on:
       - 'articles/**/*.md'
       - 'articles/**/article.json'
       - 'scripts/build_articles.py'
+      - 'scripts/build_catalog.py'
       - '.github/workflows/publish-articles.yml'
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
   group: publish-articles-main
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,25 +28,28 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_fonts.py'
       - name: Build Word and PDF from canonical Markdown
         run: python3 scripts/build_articles.py
-      - name: Commit generated publications
+      - name: Reconcile latest source and publish generated documents
         run: |
-          if [ -n "$(git status --porcelain -- articles)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch --no-tags origin main
+            # Never rebase binary PDF/DOCX. Rebuild from the latest Markdown.
+            git reset --hard origin/main
+            python3 scripts/build_articles.py
+            python3 scripts/build_catalog.py
             git add articles
-            git commit -m "docs: generate PDF and Word article publications [skip ci]"
-            for attempt in 1 2 3 4; do
-              git fetch --no-tags origin main
-              git rebase origin/main
-              if git push origin HEAD:main; then
-                echo "Published generated documents."
-                exit 0
-              fi
-              echo "Remote moved during publishing; retrying ($attempt/4)."
-              sleep 2
-            done
-            echo "Could not push generated publications after retries."
-            exit 1
-          else
-            echo "No generated changes."
-          fi
+            if git diff --cached --quiet; then
+              echo "All publications and the catalog are current."
+              exit 0
+            fi
+            git commit -m "docs: regenerate article publications and catalog [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Published generated documents without rebasing binaries."
+              exit 0
+            fi
+            echo "Branch advanced; rebuilding from latest manuscript ($attempt/4)"
+            sleep 2
+          done
+          echo "Could not push generated publications after retries."
+          exit 1
